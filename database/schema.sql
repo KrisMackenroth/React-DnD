@@ -30,3 +30,12 @@ CREATE TABLE "public"."backgrounds" (
 ) WITH (
   OIDS=FALSE
 );
+
+CREATE TABLE "public"."characters" (
+	"name" TEXT NOT NULL,
+	"class" TEXT NOT NULL,
+	"race" TEXT NOT NULL,
+  "background" TEXT NOT NULL
+) WITH (
+  OIDS=FALSE
+);
