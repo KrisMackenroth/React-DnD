@@ -1,10 +1,12 @@
 import React from 'react';
-import HelloWorld from '../components/hello-world';
+import CharacterCreation from '../components/character-create';
 
 export default function Home(props) {
   return (
+
     <div>
-      <HelloWorld />
+      <CharacterCreation />
     </div>
+
   );
 }
