@@ -75,7 +75,7 @@ export default class CharacterCreation extends React.Component {
 
       <form onSubmit={this.handleSubmit}>
         <div className='row text-center test align-items-center'>
-          <div className='col'>
+          <div className='col mt-4'>
         <input
           required
           autoFocus
@@ -87,21 +87,30 @@ export default class CharacterCreation extends React.Component {
           </div>
         </div >
         <div className='row text-center test align-items-center'>
-          <div className='col'>
-            <select name='class' onChange={this.handleChange}>{listClasses}</select>
+          <div className='col mt-4'>
+            <select name='class' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>Class</option>
+              {listClasses}
+              </select>
       </div>
       </div >
         <div className='row text-center test align-items-center'>
-          <div className='col'>
-            <select name='race' onChange={this.handleChange}>{listRaces}</select>
+          <div className='col mt-4'>
+            <select name='race' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>Race</option>
+              {listRaces}
+              </select>
           </div>
         </div >
             <div className='row text-center test align-items-center'>
-              <div className='col'>
-            <select name='background' onChange={this.handleChange}>{listBackgrounds}</select>
+          <div className='col mt-4'>
+            <select name='background' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>Background</option>
+              {listBackgrounds}
+              </select>
           </div>
         </div >
-        <button className="btn btn-primary" type="submit">Create</button>
+        <button className="btn btn-primary mt-4" type="submit">Create</button>
         </form>
 
     );

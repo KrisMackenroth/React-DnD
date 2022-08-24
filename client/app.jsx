@@ -26,8 +26,10 @@ export default class App extends React.Component {
           </div>
         </div>
       </nav>
-      <div>
+        <div className='container-fluid background-light-grey'>
+          <div className='col text-center'>
         <Home />
+        </div>
       </div>
       </React.Fragment>
     );
