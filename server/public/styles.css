@@ -10,3 +10,10 @@ html {
 .background-light-grey {
   background-color: #e7ecef;
 }
+
+.character-background {
+  width: 20%;
+  height: 20%;
+  background-color: #274c77;
+  color: white;
+}

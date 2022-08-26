@@ -1,11 +1,11 @@
 import React from 'react';
-import CharacterCreation from '../components/character-create';
+import CharacterViewer from '../components/character-view';
 
 export default function Home(props) {
   return (
 
     <div>
-      <CharacterCreation />
+      <CharacterViewer />
     </div>
 
   );

@@ -1,37 +1,51 @@
 import React from 'react';
 import Home from './pages/home';
+import { parseRoute } from './lib';
+import AppContext from './lib/app-context';
+import CreatePage from './pages/create-page';
+import NavBar from './components/navbar';
+import NotFound from './pages/not-found';
 
 export default class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      route: parseRoute(window.location.hash)
+    };
+  }
+
+  componentDidMount() {
+    window.addEventListener('hashchange', () => {
+      this.setState({
+        route: parseRoute(window.location.hash)
+      });
+    });
+  }
+
+  renderPage() {
+    const { path } = this.state.route;
+    if (path === '') {
+      return <Home />;
+    }
+    if (path === 'character-page') {
+      return <CreatePage />;
+    }
+    return <NotFound />;
+  }
+
   render() {
+    const { route } = this.state;
+
+    const contextValue = { route };
     return (
-      <React.Fragment>
-        <nav className="navbar navbar-expand-lg navbar-color">
-        <div className="container-fluid">
-            <a className="navbar-brand navbar-color" href="#">DnD</a>
-          <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                  <a className="nav-link active navbar-color" aria-current="page" href="#">Home</a>
-              </li>
-              <li className="nav-item">
-                  <a className="nav-link navbar-color" href="#">Create</a>
-              </li>
-              <li className="nav-item">
-                  <a className="nav-link navbar-color" href="#">Spells</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+      <AppContext.Provider value={contextValue}>
+       <NavBar />
         <div className='container-fluid background-light-grey'>
           <div className='col text-center'>
-        <Home />
+            {this.renderPage()}
         </div>
       </div>
-      </React.Fragment>
+      </AppContext.Provider>
     );
   }
 }
