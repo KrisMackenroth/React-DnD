@@ -23,6 +23,23 @@ if (process.env.NODE_ENV === 'development') {
 
 app.use(express.json());
 
+app.get('/api/characters', (req, res) => {
+  const sql = `
+    select *
+      from "characters"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.get('/api/classes', (req, res) => {
   const sql = `
     select *
