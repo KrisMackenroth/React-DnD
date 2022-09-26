@@ -19,7 +19,7 @@ export default class NavBar extends React.Component {
                 <a className="nav-link navbar-color" href="#character-page">Create</a>
               </li>
               <li className="nav-item">
-                <a className="nav-link navbar-color" href="#">Spells</a>
+                <a className="nav-link navbar-color" href="#spell-page">Spells</a>
               </li>
             </ul>
           </div>

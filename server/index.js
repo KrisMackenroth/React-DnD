@@ -91,6 +91,23 @@ app.get('/api/races', (req, res) => {
     });
 });
 
+app.get('/api/spells', (req, res) => {
+  const sql = `
+    select *
+      from "spells"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.post('/api/characters', (req, res, next) => {
   const { name, role, race, background } = req.body;
   if (!name || !role || !race || !background) {

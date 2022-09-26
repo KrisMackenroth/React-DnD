@@ -5,6 +5,8 @@ import AppContext from './lib/app-context';
 import CreatePage from './pages/create-page';
 import NavBar from './components/navbar';
 import NotFound from './pages/not-found';
+import StatsPage from './pages/stats-page';
+import SpellsPage from './pages/spells-page';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -29,6 +31,12 @@ export default class App extends React.Component {
     }
     if (path === 'character-page') {
       return <CreatePage />;
+    }
+    if (path === 'stats-page') {
+      return <StatsPage />;
+    }
+    if (path === 'spell-page') {
+      return <SpellsPage />;
     }
     return <NotFound />;
   }
