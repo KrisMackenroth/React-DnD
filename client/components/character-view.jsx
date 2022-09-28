@@ -1,6 +1,7 @@
+
 import React from 'react';
 // import StatsPage from '../pages/stats-page';
-import CharacterStats from './character-stats';
+// import CharacterStats from './character-stats';
 
 export default class CharacterViewer extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ export default class CharacterViewer extends React.Component {
       characters: [],
       current: ''
     };
-    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -21,36 +21,31 @@ export default class CharacterViewer extends React.Component {
       );
   }
 
-  handleClick(event) {
-    for (let x = 0; x < this.state.characters.length; x++) {
-      if (event.target.id === this.state.characters[x].name) {
-        return (
-          <div>
-            <CharacterStats />
-          </div>
-        );
-      }
-    }
-  }
-
   render() {
     const listCharacters = this.state.characters.map(characters =>
       <div className='character-background m-auto' key={characters.name}>
-      <div className='mt-4' key={characters.name} value={characters.name}>
-        {characters.name}
-          <a href='#stats-page' onClick={this.handleClick} id={characters.name} className='row justify-content-center'>View</a>
-        </div>
+        <Character characters={characters} />
       </div>
     );
-
     return (
-
       <div className='row align-items-center'>
-          <div className='col'>
+        <div className='col'>
           {listCharacters}
-          </div>
-        </div >
-
+        </div>
+      </div >
     );
   }
+}
+
+function Character(props) {
+  const { characterId, name } = props.characters;
+  const temp = `#characters?characterId=${characterId}`;
+  return (
+    <div className='character-background m-auto' key={characterId }>
+      <div className='mt-4' key={characterId} value={characterId }>
+        {name}
+        <a href={temp} id={characterId} className='row justify-content-center'>View</a>
+        </div>
+      </div>
+  );
 }
