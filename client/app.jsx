@@ -5,6 +5,9 @@ import AppContext from './lib/app-context';
 import CreatePage from './pages/create-page';
 import NavBar from './components/navbar';
 import NotFound from './pages/not-found';
+import StatsPage from './pages/stats-page';
+import SpellsPage from './pages/spells-page';
+import CharacterDetails from './pages/character-details';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -24,11 +27,22 @@ export default class App extends React.Component {
 
   renderPage() {
     const { path } = this.state.route;
+    const { route } = this.state;
     if (path === '') {
       return <Home />;
     }
     if (path === 'character-page') {
       return <CreatePage />;
+    }
+    if (path === 'stats-page') {
+      return <StatsPage />;
+    }
+    if (path === 'spell-page') {
+      return <SpellsPage />;
+    }
+    if (path === 'characters') {
+      const characterId = route.params.get('characterId');
+      return <CharacterDetails characterId={characterId} />;
     }
     return <NotFound />;
   }

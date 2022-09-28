@@ -31,11 +31,22 @@ CREATE TABLE "public"."backgrounds" (
   OIDS=FALSE
 );
 
+CREATE TABLE "public"."spells" (
+	"spell" TEXT NOT NULL,
+	"lvl" TEXT NOT NULL,
+	"type" TEXT NOT NULL,
+  "description" TEXT NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
 CREATE TABLE "public"."characters" (
+  "characterId" serial,
 	"name" TEXT NOT NULL,
 	"class" TEXT NOT NULL,
 	"race" TEXT NOT NULL,
-  "background" TEXT NOT NULL
+  "background" TEXT NOT NULL,
+   primary key ("characterId")
 ) WITH (
   OIDS=FALSE
 );

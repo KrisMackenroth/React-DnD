@@ -40,6 +40,29 @@ app.get('/api/characters', (req, res) => {
     });
 });
 
+app.get('/api/characters/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must be a positive integer');
+  }
+  const sql = `
+    select *
+      from "characters"
+      where "characterId" = $1
+  `;
+  const params = [characterId];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.get('/api/classes', (req, res) => {
   const sql = `
     select *
@@ -78,6 +101,23 @@ app.get('/api/races', (req, res) => {
   const sql = `
     select *
       from "races"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
+app.get('/api/spells', (req, res) => {
+  const sql = `
+    select *
+      from "spells"
   `;
   db.query(sql)
     .then(result => {
