@@ -19,6 +19,12 @@ export default class CharacterDetails extends React.Component {
 
   render() {
     return (
+      <React.Fragment>
+      <div className='row'>
+      <div className='col'>
+          <a href="#" className='btn btn-primary mt-4'>Back</a>
+      </div>
+        </div>
       <div>
         <p>
         {this.state.character.name}
@@ -33,6 +39,7 @@ export default class CharacterDetails extends React.Component {
           {this.state.character.race}
         </p>
       </div>
+      </React.Fragment>
     );
   }
 }
