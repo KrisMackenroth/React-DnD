@@ -1,5 +1,6 @@
 
 import React from 'react';
+import CharacterEdit from './character-edit';
 // import StatsPage from '../pages/stats-page';
 // import CharacterStats from './character-stats';
 
@@ -8,7 +9,8 @@ export default class CharacterViewer extends React.Component {
     super(props);
     this.state = {
       characters: [],
-      current: ''
+      current: '',
+      currentId: ''
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -41,6 +43,9 @@ export default class CharacterViewer extends React.Component {
             )
         );
     }
+    if (event.target.classList.contains('edit')) {
+      this.setState({ currentId: event.target.id });
+    }
   }
 
   render() {
@@ -56,6 +61,22 @@ export default class CharacterViewer extends React.Component {
           {listCharacters}
         </div>
       </div >
+        <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="staticBackdropLabel">Are you sure?</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                Edit your character Info
+              </div>
+              <div>
+                <CharacterEdit characterId={this.state.currentId}/>
+              </div>
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
@@ -69,7 +90,8 @@ function Character(props) {
       <div className='mt-4' key={characterId} value={characterId }>
         {name}
         <a href={temp} id={characterId} className='row justify-content-center'>View</a>
-        <a id={characterId} className='row justify-content-center delete'>delete</a>
+        <a id={characterId} className='row justify-content-center delete'>Delete</a>
+        <a id={characterId} className='row justify-content-center edit' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
         </div>
       </div>
   );
