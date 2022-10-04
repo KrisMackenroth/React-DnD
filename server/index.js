@@ -43,7 +43,7 @@ app.get('/api/characters', (req, res) => {
 app.get('/api/characters/:characterId', (req, res, next) => {
   const characterId = Number(req.params.characterId);
   if (!characterId) {
-    throw new ClientError(400, 'characterId must be a positive integer');
+    throw new ClientError(400, 'characterId must exist');
   }
   const sql = `
     select *
@@ -61,6 +61,48 @@ app.get('/api/characters/:characterId', (req, res, next) => {
         error: 'an unexpected error occurred'
       });
     });
+});
+
+app.delete('/api/characters/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must exist');
+  }
+  const sql = `
+    delete from "characters"
+ where "characterId" = $1
+returning *;
+  `;
+  const params = [characterId];
+  db.query(sql, params)
+    .then(result => {
+      res.status(201).json();
+    })
+    .catch(err => next(err));
+});
+
+app.patch('/api/characters/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  const { name, role, race, background } = req.body;
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must exist');
+  }
+  const sql = `
+    update "characters"
+    set "name" = $1,
+    "class" = $2,
+    "race" = $3,
+    "background" = $4
+ where "characterId" = $5
+returning *;
+  `;
+  const params = [name, role, race, background, characterId];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
 });
 
 app.get('/api/classes', (req, res) => {
