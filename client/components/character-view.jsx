@@ -25,6 +25,12 @@ export default class CharacterViewer extends React.Component {
   }
 
   handleClick(event) {
+    fetch('/api/characters')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ characters: data });
+      }
+      );
     if (event.target.classList.contains('delete')) {
       const characterId = event.target.id;
       const req = {
@@ -49,13 +55,19 @@ export default class CharacterViewer extends React.Component {
   }
 
   render() {
-    const listCharacters = this.state.characters.map(characters =>
+    let listCharacters;
+    if (this.state.characters.length > 0) {
+      listCharacters = this.state.characters.map(characters =>
       <div className='character-background m-auto' key={characters.name}>
         <Character characters={characters} />
       </div>
-    );
+      );
+    } else {
+      listCharacters = <div className='mt-4'>No Characters Created</div>;
+    }
     return (
       <React.Fragment>
+        <h1>Created Characters</h1>
       <div className='row align-items-center'>
           <div className='col' onClick={this.handleClick}>
           {listCharacters}
@@ -87,12 +99,20 @@ function Character(props) {
   const temp = `#characters?characterId=${characterId}`;
   return (
     <div className='character-background m-auto' key={characterId }>
-      <div className='mt-4' key={characterId} value={characterId }>
+      <div className='mt-4 mb-1' key={characterId} value={characterId }>
         {name}
-        <a href={temp} id={characterId} className='row justify-content-center'>View</a>
-        <a id={characterId} className='row justify-content-center delete'>Delete</a>
-        <a id={characterId} className='row justify-content-center edit' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
         </div>
+        <div className='row'>
+        <div className='col button-margin'>
+          <a href={temp} id={characterId} className='row justify-content-center btn btn-secondary'>View</a>
+      </div>
+        <div className='col button-margin'>
+          <a id={characterId} className='row justify-content-center delete btn btn-secondary'>Delete</a>
+      </div>
+        <div className='col button-margin'>
+          <a id={characterId} className='row justify-content-center edit btn btn-secondary' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
+      </div>
+      </div>
       </div>
   );
 }
