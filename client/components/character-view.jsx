@@ -55,13 +55,19 @@ export default class CharacterViewer extends React.Component {
   }
 
   render() {
-    const listCharacters = this.state.characters.map(characters =>
+    let listCharacters;
+    if (this.state.characters.length > 0) {
+      listCharacters = this.state.characters.map(characters =>
       <div className='character-background m-auto' key={characters.name}>
         <Character characters={characters} />
       </div>
-    );
+      );
+    } else {
+      listCharacters = <div className='mt-4'>No Characters Created</div>;
+    }
     return (
       <React.Fragment>
+        <h1>Created Characters</h1>
       <div className='row align-items-center'>
           <div className='col' onClick={this.handleClick}>
           {listCharacters}
