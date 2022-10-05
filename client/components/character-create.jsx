@@ -53,6 +53,7 @@ export default class CharacterCreation extends React.Component {
       body: JSON.stringify(info)
     };
     fetch('/api/characters', req);
+    window.location.hash = '#';
   }
 
   handleChange(event) {
