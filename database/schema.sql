@@ -46,6 +46,12 @@ CREATE TABLE "public"."characters" (
 	"class" TEXT NOT NULL,
 	"race" TEXT NOT NULL,
   "background" TEXT NOT NULL,
+  "str" TEXT not NULL,
+  "dex" TEXT not NULL,
+  "con" TEXT not NULL,
+  "wis" TEXT not NULL,
+  "int" TEXT not NULL,
+  "cha" TEXT not NULL,
    primary key ("characterId")
 ) WITH (
   OIDS=FALSE
