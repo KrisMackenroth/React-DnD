@@ -175,6 +175,7 @@ app.get('/api/spells', (req, res) => {
 
 app.post('/api/characters', (req, res, next) => {
   const { name, role, race, background, str, dex, con, wis, int, cha } = req.body;
+  Number(str);
   if (!name || !role || !race || !background) {
     throw new ClientError(400, 'All info must be entered properly');
   }

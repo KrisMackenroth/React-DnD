@@ -17,7 +17,7 @@ export default class CharacterCreation extends React.Component {
       con: 0,
       wis: 0,
       int: 0,
-      char: 0
+      cha: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -75,7 +75,6 @@ export default class CharacterCreation extends React.Component {
   }
 
   render() {
-
     const listClasses = this.state.classes.map(classes =>
             <option key={classes.class} value={classes.class}>{classes.class}</option>
     );
@@ -123,7 +122,7 @@ export default class CharacterCreation extends React.Component {
         </div >
             <div className='row text-center test align-items-center'>
           <div className='col mt-4'>
-            <select name='str' onChange={this.handleChange}>
+            <select name='background' onChange={this.handleChange}>
               <option value="" disabled selected hidden>Background</option>
               {listBackgrounds}
               </select>
