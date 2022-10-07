@@ -10,7 +10,14 @@ export default class CharacterCreation extends React.Component {
       name: '',
       class: '',
       race: '',
-      background: ''
+      background: '',
+      stats: [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1],
+      str: 0,
+      dex: 0,
+      con: 0,
+      wis: 0,
+      int: 0,
+      cha: 0
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -43,7 +50,13 @@ export default class CharacterCreation extends React.Component {
       name: this.state.name,
       role: this.state.class,
       race: this.state.race,
-      background: this.state.background
+      background: this.state.background,
+      str: this.state.str,
+      dex: this.state.dex,
+      con: this.state.con,
+      wis: this.state.wis,
+      int: this.state.int,
+      cha: this.state.cha
     };
     const req = {
       method: 'POST',
@@ -70,6 +83,10 @@ export default class CharacterCreation extends React.Component {
     );
     const listBackgrounds = this.state.backgrounds.map(backgrounds =>
         <option key={backgrounds.background} value={backgrounds.background}>{backgrounds.background}</option>
+    );
+
+    const statNums = this.state.stats.map(stats =>
+      <option key={stats} value={stats}>{stats}</option>
     );
 
     return (
@@ -109,6 +126,54 @@ export default class CharacterCreation extends React.Component {
               <option value="" disabled selected hidden>Background</option>
               {listBackgrounds}
               </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='str' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>STR</option>
+              {statNums}
+            </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='dex' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>DEX</option>
+              {statNums}
+            </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='con' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>CON</option>
+              {statNums}
+            </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='int' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>INT</option>
+              {statNums}
+            </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='wis' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>WIS</option>
+              {statNums}
+            </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='cha' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>CHA</option>
+              {statNums}
+            </select>
           </div>
         </div >
         <button className="btn btn-primary mt-4" type="submit">Create</button>

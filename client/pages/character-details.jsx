@@ -38,6 +38,24 @@ export default class CharacterDetails extends React.Component {
         <p>
           {this.state.character.race}
         </p>
+          <p>
+            {this.state.character.str}
+          </p>
+          <p>
+            {this.state.character.dex}
+          </p>
+          <p>
+            {this.state.character.con}
+          </p>
+          <p>
+            {this.state.character.wis}
+          </p>
+          <p>
+            {this.state.character.cha}
+          </p>
+          <p>
+            {this.state.character.int}
+          </p>
       </div>
       </React.Fragment>
     );
