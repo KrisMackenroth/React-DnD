@@ -21,41 +21,42 @@ export default class CharacterDetails extends React.Component {
     return (
       <React.Fragment>
       <div className='row'>
-      <div className='col'>
+      {/* <div className='col text-start'>
           <a href="#" className='btn btn-primary mt-4'>Back</a>
-      </div>
+      </div> */}
         </div>
+        <h1>Character Details</h1>
       <div>
-        <p>
-        {this.state.character.name}
-        </p>
-        <p>
-          {this.state.character.class}
-        </p>
-        <p>
-          {this.state.character.background}
-        </p>
-        <p>
-          {this.state.character.race}
-        </p>
-          <p>
-            {this.state.character.str}
-          </p>
-          <p>
-            {this.state.character.dex}
-          </p>
-          <p>
-            {this.state.character.con}
-          </p>
-          <p>
-            {this.state.character.wis}
-          </p>
-          <p>
-            {this.state.character.cha}
-          </p>
-          <p>
-            {this.state.character.int}
-          </p>
+<div className='row'>
+            <div className='col'><b>Name:</b>  {this.state.character.name}</div>
+</div>
+          <div className='row'>
+            <div className='col'><b>Class:</b>  {this.state.character.class}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Background:</b>  {this.state.character.background}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Race:</b>  {this.state.character.race}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Strength:</b>  {this.state.character.str}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Dexterity:</b>  {this.state.character.dex}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Constitution:</b>  {this.state.character.con}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Wisdom:</b>  {this.state.character.wis}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Intelligence:</b>  {this.state.character.int}</div>
+          </div>
+          <div className='row'>
+            <div className='col'><b>Charisma:</b>  {this.state.character.cha}</div>
+          </div>
       </div>
       </React.Fragment>
     );

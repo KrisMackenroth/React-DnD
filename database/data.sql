@@ -1,7 +1,18 @@
 insert into "classes" ("class", "hitDie", "equipment")
 values ('Paladin', '1D10', 'Chain mail'),
 ('Warlock', '1D8', 'Leather armor'),
-('Wizard', '1D6', 'Arcane focus');
+('Wizard', '1D6', 'Arcane focus'),
+('Barbarian', '1D12', 'Greataxe'),
+('Druid', '1D8', 'Leather armor'),
+('Cleric', '1D8', 'Holy Symbol'),
+('Fighter', '1D10', 'Chain Mail'),
+('Monk', '1D8', 'Shortsword'),
+('Ranger', '1D10', 'Scale Mail'),
+('Rogue', '1D8', 'Rapier'),
+('Sorcerer', '1D6', 'Light Crossbow'),
+('Artificer', '1D8', 'Arcane focus'),
+('Blood Hunter', '1D10', 'Studded Leather Armor'),
+('Bard', '1D8', 'Lute');
 insert into "races" ("race", "abilityScore", "speed")
 values ('Human', '+1 All', '30 feet'),
 ('Dragonborn', '+2 Strength, +1 Charisma', '30 feet'),
