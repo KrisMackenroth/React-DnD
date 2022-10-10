@@ -2,7 +2,9 @@ import React from 'react';
 
 function StatCalc(props) {
   let bonus;
-  if (props.stat === '3') {
+  if (props.stat === '1') {
+    bonus = -5;
+  } else if (props.stat === '3' || props.stat === '2') {
     bonus = -4;
   } else if (props.stat === '4' || props.stat === '5') {
     bonus = -3;
@@ -23,10 +25,11 @@ function StatCalc(props) {
   } else if (props.stat === '20') {
     bonus = 5;
   }
+
   return (
-    <div>
+    <span>
       {bonus}
-    </div>
+    </span>
   );
 }
 

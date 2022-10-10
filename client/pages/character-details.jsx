@@ -63,58 +63,58 @@ export default class CharacterDetails extends React.Component {
           </div>
           <div className='col'>
             <div className='row'>
-              <div className='col'><b>Acrobatics:</b>  <StatCalc stat={this.state.character.str} /></div>
+              <div className='col'><b>Acrobatics:</b>  <StatCalc stat={this.state.character.dex} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Animal Handling:</b>  {this.state.character.class}</div>
+              <div className='col'><b>Animal Handling:</b>  <StatCalc stat={this.state.character.wis} /> </div>
             </div>
             <div className='row'>
-              <div className='col'><b>Arcana:</b>  {this.state.character.background}</div>
+              <div className='col'><b>Arcana:</b>  <StatCalc stat={this.state.character.int} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Athletics:</b>  {this.state.character.race}</div>
+              <div className='col'><b>Athletics:</b>  <StatCalc stat={this.state.character.str} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Deception:</b>  {this.state.character.str}</div>
+              <div className='col'><b>Deception:</b>  <StatCalc stat={this.state.character.cha} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>History:</b>  {this.state.character.dex}</div>
+              <div className='col'><b>History:</b>  <StatCalc stat={this.state.character.int} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Insight:</b>  {this.state.character.con}</div>
+              <div className='col'><b>Insight:</b>  <StatCalc stat={this.state.character.wis} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Intimidation:</b>  {this.state.character.wis}</div>
+              <div className='col'><b>Intimidation:</b>  <StatCalc stat={this.state.character.cha} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Investigation:</b>  {this.state.character.int}</div>
+              <div className='col'><b>Investigation:</b>  <StatCalc stat={this.state.character.int} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Medicine:</b>  {this.state.character.cha}</div>
+              <div className='col'><b>Medicine:</b>  <StatCalc stat={this.state.character.wis} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Nature:</b>  {this.state.character.str}</div>
+              <div className='col'><b>Nature:</b>  <StatCalc stat={this.state.character.int} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Perception:</b>  {this.state.character.dex}</div>
+              <div className='col'><b>Perception:</b>  <StatCalc stat={this.state.character.wis} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Performance:</b>  {this.state.character.con}</div>
+              <div className='col'><b>Performance:</b>  <StatCalc stat={this.state.character.cha} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Persuasion:</b>  {this.state.character.wis}</div>
+              <div className='col'><b>Persuasion:</b>  <StatCalc stat={this.state.character.cha} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Religion:</b>  {this.state.character.int}</div>
+              <div className='col'><b>Religion:</b>  <StatCalc stat={this.state.character.int} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Sleight of Hand:</b>  {this.state.character.cha}</div>
+              <div className='col'><b>Sleight of Hand:</b>  <StatCalc stat={this.state.character.dex} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Stealth:</b>  {this.state.character.str}</div>
+              <div className='col'><b>Stealth:</b> <StatCalc stat={this.state.character.dex} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Survival:</b>  {this.state.character.dex}</div>
+              <div className='col'><b>Survival:</b>  <StatCalc stat={this.state.character.wis} /></div>
             </div>
 
           </div>
