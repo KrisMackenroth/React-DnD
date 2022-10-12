@@ -7,7 +7,13 @@ export default class CharacterDetails extends React.Component {
     this.state = {
       character: [],
       currentRoll: '',
-      races: []
+      races: [],
+      str: '',
+      dex: '',
+      con: '',
+      wis: '',
+      int: '',
+      cha: ''
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -25,6 +31,18 @@ export default class CharacterDetails extends React.Component {
       .then(res => res.json())
       .then(data => {
         this.setState({ character: data[0] });
+        fetch(`/api/races/${data[0].race}`)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ races: data[0] });
+            this.setState({ str: data[0].str });
+            this.setState({ dex: data[0].dex });
+            this.setState({ con: data[0].con });
+            this.setState({ wis: data[0].wis });
+            this.setState({ cha: data[0].cha });
+            this.setState({ int: data[0].int });
+          }
+          );
       }
       );
 
@@ -38,6 +56,13 @@ export default class CharacterDetails extends React.Component {
   }
 
   render() {
+
+    const strength = parseInt(this.state.str) + parseInt(this.state.character.str);
+    const dexterity = parseInt(this.state.dex) + parseInt(this.state.character.dex);
+    const constitution = parseInt(this.state.con) + parseInt(this.state.character.con);
+    const wisdom = parseInt(this.state.wis) + parseInt(this.state.character.wis);
+    const intelligence = parseInt(this.state.int) + parseInt(this.state.character.int);
+    const charisma = parseInt(this.state.cha) + parseInt(this.state.character.cha);
 
     return (
       <React.Fragment>
@@ -59,79 +84,79 @@ export default class CharacterDetails extends React.Component {
             <div className='col'><b>Race:</b>  {this.state.character.race}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Strength:</b>  {this.state.character.str}</div>
+            <div className='col'><b>Strength:</b>  {strength}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Dexterity:</b>  {this.state.character.dex}</div>
+            <div className='col'><b>Dexterity:</b>  {dexterity}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Constitution:</b>  {this.state.character.con}</div>
+            <div className='col'><b>Constitution:</b>  {constitution}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Wisdom:</b>  {this.state.character.wis}</div>
+            <div className='col'><b>Wisdom:</b>  {wisdom}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Intelligence:</b>  {this.state.character.int}</div>
+            <div className='col'><b>Intelligence:</b>  {intelligence}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Charisma:</b>  {this.state.character.cha}</div>
+            <div className='col'><b>Charisma:</b>  {charisma}</div>
           </div>
 
           </div>
           <div className='col' onClick={this.handleClick}>
             <div className='row'>
-              <div className='col'><b>Acrobatics:</b>  <StatCalc stat={this.state.character.dex} /></div>
+              <div className='col'><b>Acrobatics:</b>  <StatCalc stat={dexterity} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Animal Handling:</b>  <StatCalc stat={this.state.character.wis} /> </div>
+              <div className='col'><b>Animal Handling:</b>  <StatCalc stat={wisdom} /> </div>
             </div>
             <div className='row'>
-              <div className='col'><b>Arcana:</b>  <StatCalc stat={this.state.character.int} /></div>
+              <div className='col'><b>Arcana:</b>  <StatCalc stat={intelligence} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Athletics:</b>  <StatCalc stat={this.state.character.str} /></div>
+              <div className='col'><b>Athletics:</b>  <StatCalc stat={strength} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Deception:</b>  <StatCalc stat={this.state.character.cha} /></div>
+              <div className='col'><b>Deception:</b>  <StatCalc stat={charisma} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>History:</b>  <StatCalc stat={this.state.character.int} /></div>
+              <div className='col'><b>History:</b>  <StatCalc stat={intelligence} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Insight:</b>  <StatCalc stat={this.state.character.wis} /></div>
+              <div className='col'><b>Insight:</b>  <StatCalc stat={wisdom} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Intimidation:</b>  <StatCalc stat={this.state.character.cha} /></div>
+              <div className='col'><b>Intimidation:</b>  <StatCalc stat={charisma} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Investigation:</b>  <StatCalc stat={this.state.character.int} /></div>
+              <div className='col'><b>Investigation:</b>  <StatCalc stat={intelligence} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Medicine:</b>  <StatCalc stat={this.state.character.wis} /></div>
+              <div className='col'><b>Medicine:</b>  <StatCalc stat={wisdom} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Nature:</b>  <StatCalc stat={this.state.character.int} /></div>
+              <div className='col'><b>Nature:</b>  <StatCalc stat={intelligence} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Perception:</b>  <StatCalc stat={this.state.character.wis} /></div>
+              <div className='col'><b>Perception:</b>  <StatCalc stat={wisdom} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Performance:</b>  <StatCalc stat={this.state.character.cha} /></div>
+              <div className='col'><b>Performance:</b>  <StatCalc stat={charisma} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Persuasion:</b>  <StatCalc stat={this.state.character.cha} /></div>
+              <div className='col'><b>Persuasion:</b>  <StatCalc stat={charisma} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Religion:</b>  <StatCalc stat={this.state.character.int} /></div>
+              <div className='col'><b>Religion:</b>  <StatCalc stat={intelligence} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Sleight of Hand:</b>  <StatCalc stat={this.state.character.dex} /></div>
+              <div className='col'><b>Sleight of Hand:</b>  <StatCalc stat={dexterity} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Stealth:</b> <StatCalc stat={this.state.character.dex} /></div>
+              <div className='col'><b>Stealth:</b> <StatCalc stat={dexterity} /></div>
             </div>
             <div className='row'>
-              <div className='col'><b>Survival:</b>  <StatCalc stat={this.state.character.wis} /></div>
+              <div className='col'><b>Survival:</b>  <StatCalc stat={wisdom} /></div>
             </div>
 
           </div>

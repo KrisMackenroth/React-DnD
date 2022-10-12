@@ -14,9 +14,9 @@ values ('Paladin', '1D10', 'Chain mail'),
 ('Blood Hunter', '1D10', 'Studded Leather Armor'),
 ('Bard', '1D8', 'Lute');
 insert into "races" ("race","str","dex","con","wis","int","cha","speed")
-values ('Human',1,2,3,4,5,6,'30 feet'),
-('Dragonborn',1,2,3,4,5,6,'30 feet'),
-('Elf',1,2,3,4,5,6, '30 feet');
+values ('human',1,2,3,4,5,6,'30 feet'),
+('dragonborn',1,2,3,4,5,6,'30 feet'),
+('elf',1,2,3,4,5,6, '30 feet');
 insert into "backgrounds" ("background", "skillProficiencies", "languages", "equipment")
 values ('Fisher', 'History, Survival', '+1 Any', 'Fishing tackle, a net, a favorite fishing lure or oiled leather wading boots, a set of traveler"s clothes, and a belt pouch containing 10 gp'),
 ('Acolyte', 'Insight, Religion', '+2 Any', 'A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a belt pouch containing 15 gp'),
