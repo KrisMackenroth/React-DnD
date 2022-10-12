@@ -16,7 +16,12 @@ CREATE TABLE "public"."classes" (
 
 CREATE TABLE "public"."races" (
 	"race" TEXT NOT NULL,
-	"abilityScore" TEXT NOT NULL,
+	"str" TEXT not NULL,
+  "dex" TEXT not NULL,
+  "con" TEXT not NULL,
+  "wis" TEXT not NULL,
+  "int" TEXT not NULL,
+  "cha" TEXT not NULL,
 	"speed" TEXT NOT NULL
 ) WITH (
   OIDS=FALSE

@@ -6,7 +6,8 @@ export default class CharacterDetails extends React.Component {
     super(props);
     this.state = {
       character: [],
-      currentRoll: ''
+      currentRoll: '',
+      races: []
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -26,9 +27,18 @@ export default class CharacterDetails extends React.Component {
         this.setState({ character: data[0] });
       }
       );
+
+    fetch('/api/races')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ races: data });
+      }
+      );
+
   }
 
   render() {
+
     return (
       <React.Fragment>
       <div className='row'>
