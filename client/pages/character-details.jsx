@@ -5,8 +5,18 @@ export default class CharacterDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      character: []
+      character: [],
+      currentRoll: ''
     };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick(event) {
+    if (event.target.classList.contains('roll')) {
+      const roll = RollCalc(event.target.id);
+      this.setState({ currentRoll: roll });
+    }
+
   }
 
   componentDidMount() {
@@ -22,9 +32,6 @@ export default class CharacterDetails extends React.Component {
     return (
       <React.Fragment>
       <div className='row'>
-      {/* <div className='col text-start'>
-          <a href="#" className='btn btn-primary mt-4'>Back</a>
-      </div> */}
         </div>
         <h1>Character Details</h1>
       <div className='row'>
@@ -61,7 +68,7 @@ export default class CharacterDetails extends React.Component {
           </div>
 
           </div>
-          <div className='col'>
+          <div className='col' onClick={this.handleClick}>
             <div className='row'>
               <div className='col'><b>Acrobatics:</b>  <StatCalc stat={this.state.character.dex} /></div>
             </div>
@@ -119,8 +126,34 @@ export default class CharacterDetails extends React.Component {
 
           </div>
       </div>
-
+        <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">Ability Check</h1>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                {this.state.currentRoll}
+              </div>
+            </div>
+          </div>
+        </div>
       </React.Fragment>
     );
   }
+}
+
+function RollCalc(props) {
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+  }
+
+  const roll = getRandomInt(1, 21);
+
+  const final = roll + parseInt(props);
+
+  return final;
 }
