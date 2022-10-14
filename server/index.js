@@ -156,6 +156,29 @@ app.get('/api/races', (req, res) => {
     });
 });
 
+app.get('/api/races/:race', (req, res) => {
+  const race = req.params.race;
+  if (!race) {
+    throw new ClientError(400, 'Race must exist');
+  }
+  const sql = `
+    select *
+      from "races"
+      where "race" = $1
+  `;
+  const params = [race];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.get('/api/spells', (req, res) => {
   const sql = `
     select *
