@@ -63,14 +63,14 @@ export default class CharacterDetails extends React.Component {
   }
 
   render() {
-    // console.log(typeof this.state.hitPoint);
     const strength = parseInt(this.state.str) + parseInt(this.state.character.str);
     const dexterity = parseInt(this.state.dex) + parseInt(this.state.character.dex);
     const constitution = parseInt(this.state.con) + parseInt(this.state.character.con);
     const wisdom = parseInt(this.state.wis) + parseInt(this.state.character.wis);
     const intelligence = parseInt(this.state.int) + parseInt(this.state.character.int);
     const charisma = parseInt(this.state.cha) + parseInt(this.state.character.cha);
-
+    const healthBonus = <StatCalc stat={constitution} />;
+    const hitPoints = parseInt(healthBonus.props.stat) + parseInt(this.state.hitPoint);
     return (
       <React.Fragment>
       <div className='row'>
@@ -82,7 +82,7 @@ export default class CharacterDetails extends React.Component {
             <div className='col'><b>Name:</b>  {this.state.character.name}</div>
 </div>
             <div className='row'>
-              <div className='col'><b>Hit Points:</b>  {this.state.character.name}</div>
+              <div className='col'><b>Hit Points:</b>  {hitPoints}</div>
             </div>
           <div className='row'>
             <div className='col'><b>Class:</b>  {this.state.character.class}</div>
