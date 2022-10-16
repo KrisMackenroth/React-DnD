@@ -1,5 +1,6 @@
 import React from 'react';
 import StatCalc from '../components/stat-calc';
+import BonusCalc from '../components/bonus-calc';
 
 export default class CharacterDetails extends React.Component {
   constructor(props) {
@@ -69,8 +70,8 @@ export default class CharacterDetails extends React.Component {
     const wisdom = parseInt(this.state.wis) + parseInt(this.state.character.wis);
     const intelligence = parseInt(this.state.int) + parseInt(this.state.character.int);
     const charisma = parseInt(this.state.cha) + parseInt(this.state.character.cha);
-    const healthBonus = <StatCalc stat={constitution} />;
-    const hitPoints = parseInt(healthBonus.props.stat) + parseInt(this.state.hitPoint);
+    const healthBonus = BonusCalc(constitution);
+    const hitPoints = parseInt(healthBonus) + parseInt(this.state.hitPoint);
     return (
       <React.Fragment>
       <div className='row'>
