@@ -1,18 +1,18 @@
-insert into "classes" ("class", "hitDie", "equipment")
-values ('Paladin', '1D10', 'Chain mail'),
-('Warlock', '1D8', 'Leather armor'),
-('Wizard', '1D6', 'Arcane focus'),
-('Barbarian', '1D12', 'Greataxe'),
-('Druid', '1D8', 'Leather armor'),
-('Cleric', '1D8', 'Holy Symbol'),
-('Fighter', '1D10', 'Chain Mail'),
-('Monk', '1D8', 'Shortsword'),
-('Ranger', '1D10', 'Scale Mail'),
-('Rogue', '1D8', 'Rapier'),
-('Sorcerer', '1D6', 'Light Crossbow'),
-('Artificer', '1D8', 'Arcane focus'),
-('Blood Hunter', '1D10', 'Studded Leather Armor'),
-('Bard', '1D8', 'Lute');
+insert into "classes" ("class", "hitDie", "equipment", "startHealth")
+values ('Paladin', '1D10', 'Chain mail', 10),
+('Warlock', '1D8', 'Leather armor', 8),
+('Wizard', '1D6', 'Arcane focus', 6),
+('Barbarian', '1D12', 'Greataxe', 12),
+('Druid', '1D8', 'Leather armor', 8),
+('Cleric', '1D8', 'Holy Symbol', 8),
+('Fighter', '1D10', 'Chain Mail', 10),
+('Monk', '1D8', 'Shortsword', 8),
+('Ranger', '1D10', 'Scale Mail', 10),
+('Rogue', '1D8', 'Rapier', 8),
+('Sorcerer', '1D6', 'Light Crossbow', 6),
+('Artificer', '1D8', 'Arcane focus', 8),
+('Blood Hunter', '1D10', 'Studded Leather Armor', 10),
+('Bard', '1D8', 'Lute', 8);
 insert into "races" ("race","str","dex","con","wis","int","cha","speed")
 values ('human',1,1,1,1,1,1,'30 feet'),
 ('dragonborn',2,0,0,0,0,1,'30 feet'),

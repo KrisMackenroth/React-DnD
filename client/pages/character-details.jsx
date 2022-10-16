@@ -13,7 +13,8 @@ export default class CharacterDetails extends React.Component {
       con: '',
       wis: '',
       int: '',
-      cha: ''
+      cha: '',
+      hitPoint: ''
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -43,6 +44,12 @@ export default class CharacterDetails extends React.Component {
             this.setState({ int: data[0].int });
           }
           );
+        fetch(`/api/classes/${data[0].class}`)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ hitPoint: data[0].startHealth });
+          }
+          );
       }
       );
 
@@ -56,14 +63,14 @@ export default class CharacterDetails extends React.Component {
   }
 
   render() {
-
     const strength = parseInt(this.state.str) + parseInt(this.state.character.str);
     const dexterity = parseInt(this.state.dex) + parseInt(this.state.character.dex);
     const constitution = parseInt(this.state.con) + parseInt(this.state.character.con);
     const wisdom = parseInt(this.state.wis) + parseInt(this.state.character.wis);
     const intelligence = parseInt(this.state.int) + parseInt(this.state.character.int);
     const charisma = parseInt(this.state.cha) + parseInt(this.state.character.cha);
-
+    const healthBonus = <StatCalc stat={constitution} />;
+    const hitPoints = parseInt(healthBonus.props.stat) + parseInt(this.state.hitPoint);
     return (
       <React.Fragment>
       <div className='row'>
@@ -74,6 +81,9 @@ export default class CharacterDetails extends React.Component {
 <div className='row'>
             <div className='col'><b>Name:</b>  {this.state.character.name}</div>
 </div>
+            <div className='row'>
+              <div className='col'><b>Hit Points:</b>  {hitPoints}</div>
+            </div>
           <div className='row'>
             <div className='col'><b>Class:</b>  {this.state.character.class}</div>
           </div>
