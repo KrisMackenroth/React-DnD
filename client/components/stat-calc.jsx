@@ -18,7 +18,8 @@ export default class StatCalc extends React.Component {
         <span>
           {bonus}
         </span>
-        <a id={bonus} className='roll' data-bs-toggle="modal" data-bs-target="#exampleModal"> Roll</a>
+
+        <a id={bonus} className='roll fa-solid fa-dice-d20 no-underline' data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
       </React.Fragment>
     );
   }

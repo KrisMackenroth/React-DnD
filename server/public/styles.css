@@ -33,3 +33,7 @@ a:hover {
 .button-margin {
   margin: 2%;
 }
+
+.no-underline {
+  text-decoration: none;
+}
