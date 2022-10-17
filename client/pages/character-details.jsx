@@ -185,6 +185,11 @@ export default class CharacterDetails extends React.Component {
             </div>
           </div>
         </div>
+        <div className="stat-block">
+          <div className="stat-text mb-1">Strength</div>
+          <div className='stat-box mb-1'>27</div>
+          <div className='border-box mb-1'>5</div>
+          </div>
       </React.Fragment>
     );
   }
@@ -203,3 +208,15 @@ function RollCalc(props) {
 
   return final;
 }
+
+// function StatBox(props) {
+//   return (
+
+//     <div className="stat-block">
+//       <div className="stat-text mb-1">{props.name}</div>
+//       <div className='stat-box mb-1'>{props.stat}</div>
+//       <div className='border-box mb-1'>{props.bonus}</div>
+//     </div>
+
+//   );
+// }
