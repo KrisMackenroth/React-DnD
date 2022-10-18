@@ -122,6 +122,7 @@ export default class CharacterDetails extends React.Component {
 
           </div>
           <div className='col' onClick={this.handleClick}>
+            <div className='test'>
             <div className='row'>
               <div className='col'><b>Acrobatics:</b>  <StatCalc stat={dexterity} /></div>
             </div>
@@ -179,6 +180,7 @@ export default class CharacterDetails extends React.Component {
 
           </div>
       </div>
+        </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
