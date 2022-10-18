@@ -1,6 +1,7 @@
 import React from 'react';
 import StatCalc from '../components/stat-calc';
 import BonusCalc from '../components/bonus-calc';
+import StatBox from '../components/stat-box';
 
 export default class CharacterDetails extends React.Component {
   constructor(props) {
@@ -72,6 +73,12 @@ export default class CharacterDetails extends React.Component {
     const charisma = parseInt(this.state.cha) + parseInt(this.state.character.cha);
     const healthBonus = BonusCalc(constitution);
     const hitPoints = parseInt(healthBonus) + parseInt(this.state.hitPoint);
+    const strengthBonus = BonusCalc(strength);
+    const dexBonus = BonusCalc(dexterity);
+    const conBonus = BonusCalc(constitution);
+    const wisBonus = BonusCalc(wisdom);
+    const intBonus = BonusCalc(intelligence);
+    const chaBonus = BonusCalc(charisma);
     return (
       <React.Fragment>
       <div className='row'>
@@ -95,26 +102,27 @@ export default class CharacterDetails extends React.Component {
             <div className='col'><b>Race:</b>  {this.state.character.race}</div>
           </div>
           <div className='row'>
-            <div className='col'><b>Strength:</b>  {strength}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Strength" stat={strength} bonus={strengthBonus}/></div>
           </div>
           <div className='row'>
-            <div className='col'><b>Dexterity:</b>  {dexterity}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Dexterity" stat={dexterity} bonus={dexBonus} /></div>
           </div>
           <div className='row'>
-            <div className='col'><b>Constitution:</b>  {constitution}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Constitution" stat={constitution} bonus={conBonus} /></div>
           </div>
           <div className='row'>
-            <div className='col'><b>Wisdom:</b>  {wisdom}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Wisdom" stat={wisdom} bonus={wisBonus} /></div>
           </div>
           <div className='row'>
-            <div className='col'><b>Intelligence:</b>  {intelligence}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Intelligence" stat={intelligence} bonus={intBonus} /></div>
           </div>
           <div className='row'>
-            <div className='col'><b>Charisma:</b>  {charisma}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Charisma" stat={charisma} bonus={chaBonus} /></div>
           </div>
 
           </div>
           <div className='col' onClick={this.handleClick}>
+            <div className='test'>
             <div className='row'>
               <div className='col'><b>Acrobatics:</b>  <StatCalc stat={dexterity} /></div>
             </div>
@@ -172,6 +180,7 @@ export default class CharacterDetails extends React.Component {
 
           </div>
       </div>
+        </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">
             <div className="modal-content">
@@ -185,6 +194,7 @@ export default class CharacterDetails extends React.Component {
             </div>
           </div>
         </div>
+
       </React.Fragment>
     );
   }
