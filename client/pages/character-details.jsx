@@ -16,7 +16,8 @@ export default class CharacterDetails extends React.Component {
       wis: '',
       int: '',
       cha: '',
-      hitPoint: ''
+      hitPoint: '',
+      speed: ''
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -37,6 +38,7 @@ export default class CharacterDetails extends React.Component {
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
+            this.setState({ speed: data[0].speed });
             this.setState({ races: data[0] });
             this.setState({ str: data[0].str });
             this.setState({ dex: data[0].dex });
@@ -81,105 +83,137 @@ export default class CharacterDetails extends React.Component {
     const chaBonus = BonusCalc(charisma);
     return (
       <React.Fragment>
-      <div className='row'>
+        <div className='row'>
         </div>
         <h1>Character Details</h1>
-      <div className='row'>
-        <div className='col'>
-<div className='row'>
-            <div className='col'><b>Name:</b>  {this.state.character.name}</div>
-</div>
+        <div className='row justify-content-center'>
+          <div className='col-4'>
             <div className='row'>
-              <div className='col'><b>Hit Points:</b>  {hitPoints}</div>
+              <div className='col d-flex justify-content-center'><StatBox name="Strength" stat={strength} bonus={strengthBonus} /></div>
             </div>
-          <div className='row'>
-            <div className='col'><b>Class:</b>  {this.state.character.class}</div>
-          </div>
-          <div className='row'>
-            <div className='col'><b>Background:</b>  {this.state.character.background}</div>
-          </div>
-          <div className='row'>
-            <div className='col'><b>Race:</b>  {this.state.character.race}</div>
-          </div>
-          <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Strength" stat={strength} bonus={strengthBonus}/></div>
-          </div>
-          <div className='row'>
+            <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox name="Dexterity" stat={dexterity} bonus={dexBonus} /></div>
-          </div>
-          <div className='row'>
+            </div>
+            <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox name="Constitution" stat={constitution} bonus={conBonus} /></div>
-          </div>
-          <div className='row'>
+            </div>
+            <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox name="Wisdom" stat={wisdom} bonus={wisBonus} /></div>
-          </div>
-          <div className='row'>
+            </div>
+            <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox name="Intelligence" stat={intelligence} bonus={intBonus} /></div>
-          </div>
-          <div className='row'>
+            </div>
+            <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox name="Charisma" stat={charisma} bonus={chaBonus} /></div>
+            </div>
           </div>
+          <div className='col-4'>
+            <div className='row'>
+              <div className='col test'><b>Name:</b>  {this.state.character.name}</div>
+            </div>
+            <div className='row'>
+              <div className='col test'><b>Hit Points:</b>  {hitPoints}</div>
+            </div>
+            <div className='row'>
+              <div className='col test'><b>Class:</b>  {this.state.character.class}</div>
+            </div>
+            <div className='row'>
+              <div className='col test'><b>Background:</b>  {this.state.character.background}</div>
+            </div>
+            <div className='row'>
+              <div className='col test'><b>Race:</b>  {this.state.character.race}</div>
+            </div>
+            <div className='row'>
+              <div className=' col test'><b>Speed:</b> {this.state.speed}</div>
+            </div>
 
           </div>
-          <div className='col' onClick={this.handleClick}>
+
+          <div className='col-4' onClick={this.handleClick}>
             <div className='test'>
-            <div className='row'>
-              <div className='col'><b>Acrobatics:</b>  <StatCalc stat={dexterity} /></div>
+              <div className='row'>
+                <div className='col'><b>Saving Throws</b>  </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Strength:</b> <StatCalc stat={strength} /> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Dexterity:</b> <StatCalc stat={dexterity} /> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Constitution:</b> <StatCalc stat={constitution} /> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Wisdom:</b> <StatCalc stat={wisdom} /> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Intelligence:</b> <StatCalc stat={intelligence} /> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Charisma:</b> <StatCalc stat={charisma} /> </div>
+              </div>
             </div>
-            <div className='row'>
-              <div className='col'><b>Animal Handling:</b>  <StatCalc stat={wisdom} /> </div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Arcana:</b>  <StatCalc stat={intelligence} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Athletics:</b>  <StatCalc stat={strength} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Deception:</b>  <StatCalc stat={charisma} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>History:</b>  <StatCalc stat={intelligence} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Insight:</b>  <StatCalc stat={wisdom} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Intimidation:</b>  <StatCalc stat={charisma} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Investigation:</b>  <StatCalc stat={intelligence} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Medicine:</b>  <StatCalc stat={wisdom} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Nature:</b>  <StatCalc stat={intelligence} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Perception:</b>  <StatCalc stat={wisdom} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Performance:</b>  <StatCalc stat={charisma} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Persuasion:</b>  <StatCalc stat={charisma} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Religion:</b>  <StatCalc stat={intelligence} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Sleight of Hand:</b>  <StatCalc stat={dexterity} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Stealth:</b> <StatCalc stat={dexterity} /></div>
-            </div>
-            <div className='row'>
-              <div className='col'><b>Survival:</b>  <StatCalc stat={wisdom} /></div>
-            </div>
+            <div className='test'>
+              <div className='row'>
+                <div className='col'><b>Skills</b> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Acrobatics:</b>  <StatCalc stat={dexterity} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Animal Handling:</b>  <StatCalc stat={wisdom} /> </div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Arcana:</b>  <StatCalc stat={intelligence} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Athletics:</b>  <StatCalc stat={strength} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Deception:</b>  <StatCalc stat={charisma} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>History:</b>  <StatCalc stat={intelligence} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Insight:</b>  <StatCalc stat={wisdom} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Intimidation:</b>  <StatCalc stat={charisma} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Investigation:</b>  <StatCalc stat={intelligence} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Medicine:</b>  <StatCalc stat={wisdom} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Nature:</b>  <StatCalc stat={intelligence} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Perception:</b>  <StatCalc stat={wisdom} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Performance:</b>  <StatCalc stat={charisma} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Persuasion:</b>  <StatCalc stat={charisma} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Religion:</b>  <StatCalc stat={intelligence} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Sleight of Hand:</b>  <StatCalc stat={dexterity} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Stealth:</b> <StatCalc stat={dexterity} /></div>
+              </div>
+              <div className='row'>
+                <div className='col'><b>Survival:</b>  <StatCalc stat={wisdom} /></div>
+              </div>
 
+            </div>
           </div>
-      </div>
         </div>
         <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog">

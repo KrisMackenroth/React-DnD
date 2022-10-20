@@ -14,15 +14,15 @@ values ('Paladin', '1D10', 'Chain mail', 10),
 ('Blood Hunter', '1D10', 'Studded Leather Armor', 10),
 ('Bard', '1D8', 'Lute', 8);
 insert into "races" ("race","str","dex","con","wis","int","cha","speed")
-values ('human',1,1,1,1,1,1,'30 feet'),
-('dragonborn',2,0,0,0,0,1,'30 feet'),
-('dwarf',0,0,2,0,0,0,'30 feet'),
-('gnome',0,0,0,0,2,0,'30 feet'),
-('half-elf',0,0,0,0,0,2,'30 feet'),
-('halfing',0,2,0,0,0,0,'30 feet'),
-('half-orc',2,0,1,0,0,0,'30 feet'),
-('tiefling',0,0,0,0,1,2,'30 feet'),
-('elf',0,2,0,0,0,0,'30 feet');
+values ('human',1,1,1,1,1,1,30),
+('dragonborn',2,0,0,0,0,1,30),
+('dwarf',0,0,2,0,0,0,25),
+('gnome',0,0,0,0,2,0,25),
+('half-elf',0,0,0,0,0,2,30),
+('halfing',0,2,0,0,0,0,25),
+('half-orc',2,0,1,0,0,0,30),
+('tiefling',0,0,0,0,1,2,30),
+('elf',0,2,0,0,0,0,30);
 insert into "backgrounds" ("background", "skillProficiencies", "languages", "equipment")
 values ('Fisher', 'History, Survival', '+1 Any', 'Fishing tackle, a net, a favorite fishing lure or oiled leather wading boots, a set of traveler"s clothes, and a belt pouch containing 10 gp'),
 ('Acolyte', 'Insight, Religion', '+2 Any', 'A holy symbol (a gift to you when you entered the priesthood), a prayer book or prayer wheel, 5 sticks of incense, vestments, a set of common clothes, and a belt pouch containing 15 gp'),
