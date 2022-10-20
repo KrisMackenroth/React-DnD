@@ -29,6 +29,6 @@ values ('Fisher', 'History, Survival', '+1 Any', 'Fishing tackle, a net, a favor
 ('Criminal', 'Deception, Stealth', '0', 'A crowbar, a set of dark common clothes including a hood, and a belt pouch containing 15 gp');
 insert into "spells" ("spell", "lvl", "type", "description")
 values ('Fireball', '3rd', 'evocation', 'A bright streak flashes from your pointing finger to a point you choose within range and then blossoms with a low roar into an explosion of flame. Each creature in a 20-foot-radius sphere centered on that point must make a Dexterity saving throw. A target takes 8d6 fire damage on a failed save, or half as much damage on a successful one. The fire spreads around corners. It ignites flammable objects in the area that aren’t being worn or carried.');
-insert into "characters" ("name", "class", "race", "background","str","dex","con","wis","int","cha")
-values ('kris', 'pally', 'human', 'wanderer',1,2,3,4,5,6),
-('bob', 'Ranger', 'elf', 'thief',1,2,3,4,5,6);
+insert into "characters" ("name", "class", "race", "background","str","dex","con","wis","int","cha", "level")
+values ('kris', 'pally', 'human', 'wanderer',1,2,3,4,5,6,1),
+('bob', 'Ranger', 'elf', 'thief',1,2,3,4,5,6,1);

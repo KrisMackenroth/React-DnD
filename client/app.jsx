@@ -55,7 +55,7 @@ export default class App extends React.Component {
       <AppContext.Provider value={contextValue}>
        <NavBar />
         <div className='container-fluid background-light-grey'>
-          <div className='col text-center'>
+          <div className='row text-center'>
             {this.renderPage()}
         </div>
       </div>

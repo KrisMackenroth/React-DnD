@@ -226,11 +226,11 @@ app.post('/api/characters', (req, res, next) => {
     throw new ClientError(400, 'All info must be entered properly');
   }
   const sql = `
-    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha")
-    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level")
+    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
     returning *
   `;
-  const params = [name, role, race, background, str, dex, con, wis, int, cha];
+  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1];
   db.query(sql, params)
     .then(result => {
       const [info] = result.rows;
