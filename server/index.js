@@ -122,6 +122,23 @@ app.get('/api/classes', (req, res) => {
     });
 });
 
+app.get('/api/proficiency', (req, res) => {
+  const sql = `
+    select *
+      from "proficencies"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.get('/api/backgrounds', (req, res) => {
   const sql = `
     select *
@@ -220,17 +237,17 @@ app.get('/api/spells', (req, res) => {
 });
 
 app.post('/api/characters', (req, res, next) => {
-  const { name, role, race, background, str, dex, con, wis, int, cha } = req.body;
+  const { name, role, race, background, str, dex, con, wis, int, cha, prof } = req.body;
   Number(str);
   if (!name || !role || !race || !background) {
     throw new ClientError(400, 'All info must be entered properly');
   }
   const sql = `
-    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha")
-    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof")
+    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
     returning *
   `;
-  const params = [name, role, race, background, str, dex, con, wis, int, cha];
+  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof];
   db.query(sql, params)
     .then(result => {
       const [info] = result.rows;

@@ -46,6 +46,12 @@ CREATE TABLE "public"."spells" (
   OIDS=FALSE
 );
 
+CREATE TABLE "public"."proficencies" (
+	"name" TEXT NOT NULL
+) WITH (
+  OIDS=FALSE
+);
+
 CREATE TABLE "public"."characters" (
   "characterId" serial,
 	"name" TEXT NOT NULL,
@@ -58,6 +64,8 @@ CREATE TABLE "public"."characters" (
   "wis" TEXT not NULL,
   "int" TEXT not NULL,
   "cha" TEXT not NULL,
+  "level" TEXT NOT NULL,
+  "prof" TEXT NOT NULL,
    primary key ("characterId")
 ) WITH (
   OIDS=FALSE
