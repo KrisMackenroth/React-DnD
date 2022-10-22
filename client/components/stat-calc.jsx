@@ -13,12 +13,15 @@ export default class StatCalc extends React.Component {
   render() {
     let bonus;
     let confirm;
-    if (this.props.name === this.props.character) {
-      bonus = BonusCalc(this.props.stat + this.props.prof);
-      confirm = ' yes';
-    } else {
-      bonus = BonusCalc(this.props.stat);
-      confirm = '';
+    for (let x = 0; x < this.props.character.length; x++) {
+      if (this.props.name === this.props.character[x]) {
+        bonus = BonusCalc(this.props.stat + this.props.prof);
+        confirm = ' yes';
+        break;
+      } else {
+        bonus = BonusCalc(this.props.stat);
+        confirm = '';
+      }
     }
 
     return (

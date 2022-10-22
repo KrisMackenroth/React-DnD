@@ -19,7 +19,8 @@ export default class CharacterCreation extends React.Component {
       int: 0,
       cha: 0,
       prof: [],
-      profic: ''
+      profic: '',
+      addon: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -79,8 +80,12 @@ export default class CharacterCreation extends React.Component {
   }
 
   handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+    if (event.target.name === 'profic') {
+      this.setState({ profic: this.state.addon + ' ' + event.target.value });
+    } else {
+      const { name, value } = event.target;
+      this.setState({ [name]: value });
+    }
   }
 
   render() {
@@ -129,6 +134,14 @@ export default class CharacterCreation extends React.Component {
               <option value="" disabled selected hidden>Race</option>
               {listRaces}
               </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='addon' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>Proficency</option>
+              {listProf}
+            </select>
           </div>
         </div >
         <div className='row text-center test align-items-center'>
