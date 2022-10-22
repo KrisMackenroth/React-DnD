@@ -17,7 +17,9 @@ export default class CharacterCreation extends React.Component {
       con: 0,
       wis: 0,
       int: 0,
-      cha: 0
+      cha: 0,
+      prof: [],
+      profic: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -42,6 +44,12 @@ export default class CharacterCreation extends React.Component {
         this.setState({ backgrounds: data });
       }
       );
+    fetch('/api/proficiency')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ prof: data });
+      }
+      );
   }
 
   handleSubmit(event) {
@@ -56,7 +64,8 @@ export default class CharacterCreation extends React.Component {
       con: this.state.con,
       wis: this.state.wis,
       int: this.state.int,
-      cha: this.state.cha
+      cha: this.state.cha,
+      prof: this.state.profic
     };
     const req = {
       method: 'POST',
@@ -84,7 +93,9 @@ export default class CharacterCreation extends React.Component {
     const listBackgrounds = this.state.backgrounds.map(backgrounds =>
         <option key={backgrounds.background} value={backgrounds.background}>{backgrounds.background}</option>
     );
-
+    const listProf = this.state.prof.map(prof =>
+      <option key={prof.name} value={prof.name}>{prof.name}</option>
+    );
     const statNums = this.state.stats.map(stats =>
       <option key={stats} value={stats}>{stats}</option>
     );
@@ -118,6 +129,14 @@ export default class CharacterCreation extends React.Component {
               <option value="" disabled selected hidden>Race</option>
               {listRaces}
               </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <select name='profic' onChange={this.handleChange}>
+              <option value="" disabled selected hidden>Proficency</option>
+              {listProf}
+            </select>
           </div>
         </div >
             <div className='row text-center test align-items-center'>

@@ -19,7 +19,8 @@ export default class CharacterDetails extends React.Component {
       cha: '',
       hitPoint: '',
       speed: '',
-      level: ''
+      level: '',
+      test: []
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -36,6 +37,7 @@ export default class CharacterDetails extends React.Component {
     fetch(`/api/characters/${this.props.characterId}`)
       .then(res => res.json())
       .then(data => {
+        this.setState({ test: data[0].prof });
         this.setState({ level: data[0].level });
         this.setState({ character: data[0] });
         fetch(`/api/races/${data[0].race}`)
@@ -70,6 +72,7 @@ export default class CharacterDetails extends React.Component {
   }
 
   render() {
+    // console.log(this.state.test);
     const prof = ProfCalc(parseInt(this.state.level));
     const strength = parseInt(this.state.str) + parseInt(this.state.character.str);
     const dexterity = parseInt(this.state.dex) + parseInt(this.state.character.dex);
