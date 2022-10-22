@@ -8,33 +8,28 @@ export default class StatCalc extends React.Component {
       currentRoll: '',
       proficent: 'not-proficent'
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(event) {
-    if (event.target.classList.contains('not-proficent')) {
-      this.setState({ proficent: 'proficent' });
-    } else {
-      this.setState({ proficent: 'not-proficent' });
-    }
   }
 
   render() {
     let bonus;
-    if (this.state.proficent === 'proficent') {
+    let confirm;
+    if (this.props.name === this.props.character) {
       bonus = BonusCalc(this.props.stat + this.props.prof);
+      confirm = ' yes';
     } else {
       bonus = BonusCalc(this.props.stat);
+      confirm = '';
     }
 
     return (
       <React.Fragment>
+        <b>{this.props.name}</b>
         <span>
           {bonus}
+          {confirm}
         </span>
 
         <a id={bonus} className='roll fa-solid fa-dice-d20 no-underline' data-bs-toggle="modal" data-bs-target="#exampleModal"></a>
-        <a onClick={this.handleClick} className={this.state.proficent}> test</a>
       </React.Fragment>
     );
   }

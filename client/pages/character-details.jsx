@@ -165,58 +165,58 @@ export default class CharacterDetails extends React.Component {
                 <div className='col'><b>Skills</b> </div>
               </div>
               <div className='row'>
-                <div className='col'><b>Acrobatics:</b>  <StatCalc stat={dexterity} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Acrobatics" stat={dexterity} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Animal Handling:</b>  <StatCalc stat={wisdom} /> </div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Animal Handling" stat={wisdom} /> </div>
               </div>
               <div className='row'>
-                <div className='col'><b>Arcana:</b>  <StatCalc stat={intelligence} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Arcana" stat={intelligence} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Athletics:</b>  <StatCalc stat={strength} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="athletics" stat={strength} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Deception:</b>  <StatCalc stat={charisma} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Deception" stat={charisma} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>History:</b>  <StatCalc stat={intelligence} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="History" stat={intelligence} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Insight:</b>  <StatCalc stat={wisdom} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Insight" stat={wisdom} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Intimidation:</b>  <StatCalc stat={charisma} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Intimidation" stat={charisma} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Investigation:</b>  <StatCalc stat={intelligence} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Investigation" stat={intelligence} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Medicine:</b>  <StatCalc stat={wisdom} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Medicine" stat={wisdom} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Nature:</b>  <StatCalc stat={intelligence} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Nature" stat={intelligence} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Perception:</b>  <StatCalc stat={wisdom} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Perception" stat={wisdom} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Performance:</b>  <StatCalc stat={charisma} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Performance" stat={charisma} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Persuasion:</b>  <StatCalc stat={charisma} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Persuasion" stat={charisma} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Religion:</b>  <StatCalc stat={intelligence} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Religion" stat={intelligence} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Sleight of Hand:</b>  <StatCalc stat={dexterity} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Sleight of Hand" stat={dexterity} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Stealth:</b> <StatCalc stat={dexterity} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Stealth" stat={dexterity} /></div>
               </div>
               <div className='row'>
-                <div className='col'><b>Survival:</b>  <StatCalc stat={wisdom} /></div>
+                <div className='col'><StatCalc prof={prof} character={this.state.test} name="Survival" stat={wisdom} /></div>
               </div>
 
             </div>
