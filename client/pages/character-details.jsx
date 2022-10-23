@@ -20,7 +20,8 @@ export default class CharacterDetails extends React.Component {
       hitPoint: '',
       speed: '',
       level: '',
-      test: []
+      test: [],
+      savingThrows: ''
     };
     this.handleClick = this.handleClick.bind(this);
   }
@@ -56,6 +57,7 @@ export default class CharacterDetails extends React.Component {
         fetch(`/api/classes/${data[0].class}`)
           .then(res => res.json())
           .then(data => {
+            this.setState({ savingThrows: data[0].prof });
             this.setState({ hitPoint: data[0].startHealth });
           }
           );
@@ -72,7 +74,8 @@ export default class CharacterDetails extends React.Component {
   }
 
   render() {
-    const example = this.state.test;
+    const savingThrows = this.state.savingThrows;
+    const example = this.state.test + ' ' + savingThrows;
     const temp = example.toString().split(' ');
     const prof = ProfCalc(parseInt(this.state.level));
     const strength = parseInt(this.state.str) + parseInt(this.state.character.str);
@@ -140,30 +143,30 @@ export default class CharacterDetails extends React.Component {
           <div className='col-4' onClick={this.handleClick}>
             <div className='test'>
               <div className='row'>
-                <div className='col'><b>Saving Throws</b>  </div>
+                <div className='col'><b><u>Saving Throws</u></b>  </div>
               </div>
               <div className='row'>
-                <div className='col'> <StatCalc name="Strength" prof={prof} character={temp} stat={strength} /> </div>
+                <div className='col'> <StatCalc name="strength" prof={prof} character={temp} stat={strength} /> </div>
               </div>
               <div className='row'>
-                <div className='col'> <StatCalc name="Dexterity" prof={prof} character={temp} stat={dexterity} /> </div>
+                <div className='col'> <StatCalc name="dexterity" prof={prof} character={temp} stat={dexterity} /> </div>
               </div>
               <div className='row'>
-                <div className='col'> <StatCalc name="Constitution" prof={prof} character={temp} stat={constitution} /> </div>
+                <div className='col'> <StatCalc name="constitution" prof={prof} character={temp} stat={constitution} /> </div>
               </div>
               <div className='row'>
-                <div className='col'> <StatCalc name="Wisdom" prof={prof} character={temp} stat={wisdom} /> </div>
+                <div className='col'> <StatCalc name="wisdom" prof={prof} character={temp} stat={wisdom} /> </div>
               </div>
               <div className='row'>
-                <div className='col'> <StatCalc name="Intelligence" prof={prof} character={temp} stat={intelligence} /> </div>
+                <div className='col'> <StatCalc name="intelligence" prof={prof} character={temp} stat={intelligence} /> </div>
               </div>
               <div className='row'>
-                <div className='col'> <StatCalc name="Charisma" prof={prof} character={temp} stat={charisma} /> </div>
+                <div className='col'> <StatCalc name="charisma" prof={prof} character={temp} stat={charisma} /> </div>
               </div>
             </div>
             <div className='test'>
               <div className='row'>
-                <div className='col'><b>Skills</b> </div>
+                <div className='col'><b><u>Skills</u></b> </div>
               </div>
               <div className='row'>
                 <div className='col'><StatCalc prof={prof} character={temp} name="acrobatics" stat={dexterity} /></div>
@@ -246,7 +249,7 @@ function RollCalc(props) {
   function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (max - min) + min);
   }
 
   const roll = getRandomInt(1, 21);
