@@ -10,7 +10,8 @@ CREATE TABLE "public"."classes" (
 	"class" TEXT NOT NULL,
 	"hitDie" TEXT NOT NULL,
 	"equipment" TEXT NOT NULL,
-  "startHealth" TEXT NOT NULL
+  "startHealth" TEXT NOT NULL,
+  "prof" TEXT NOT NULL
 ) WITH (
   OIDS=FALSE
 );
