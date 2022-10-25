@@ -22,20 +22,23 @@ export default class StatBox extends React.Component {
       editModeEnabled: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(event) {
     this.setState({ editModeEnabled: !this.state.editModeEnabled });
   }
 
-  render() {
+  handleChange(event) {
+  }
 
+  render() {
+    const temp = this.props.stat.toString();
     return (
       <div className="stat-block">
         <div className="stat-text mb-1">{this.props.name}</div>
-        <input type="number" value={this.props.stat} className='stat-box mb-1 number' disabled={!this.state.editModeEnabled}></input>
+        <input onChange={this.handleChange} type="number" defaultValue={temp} className='stat-box mb-1 number'></input>
         <div className='border-box mb-1'>{this.props.bonus}</div>
-        <a role="button" title="Edit" onClick={this.handleClick}>✏️</a>
       </div>
     );
   }
