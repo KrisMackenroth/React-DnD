@@ -100,22 +100,22 @@ export default class CharacterDetails extends React.Component {
         <div className='row justify-content-center'>
           <div className='col-4'>
             <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Strength" stat={strength} bonus={strengthBonus} /></div>
+              <div className='col d-flex justify-content-center'><StatBox tempName='newStr' characterId={this.props.characterId} name="str" stat={strength} bonus={strengthBonus} /></div>
             </div>
             <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Dexterity" stat={dexterity} bonus={dexBonus} /></div>
+              <div className='col d-flex justify-content-center'><StatBox characterId={this.props.characterId} name="dex" stat={dexterity} bonus={dexBonus} /></div>
             </div>
             <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Constitution" stat={constitution} bonus={conBonus} /></div>
+              <div className='col d-flex justify-content-center'><StatBox characterId={this.props.characterId} name="con" stat={constitution} bonus={conBonus} /></div>
             </div>
             <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Wisdom" stat={wisdom} bonus={wisBonus} /></div>
+              <div className='col d-flex justify-content-center'><StatBox characterId={this.props.characterId} name="wis" stat={wisdom} bonus={wisBonus} /></div>
             </div>
             <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Intelligence" stat={intelligence} bonus={intBonus} /></div>
+              <div className='col d-flex justify-content-center'><StatBox characterId={this.props.characterId} name="int" stat={intelligence} bonus={intBonus} /></div>
             </div>
             <div className='row'>
-              <div className='col d-flex justify-content-center'><StatBox name="Charisma" stat={charisma} bonus={chaBonus} /></div>
+              <div className='col d-flex justify-content-center'><StatBox characterId={this.props.characterId} name="cha" stat={charisma} bonus={chaBonus} /></div>
             </div>
           </div>
           <div className='col-4'>
