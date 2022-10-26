@@ -91,7 +91,6 @@ export default class StatBox extends React.Component {
         <div className="stat-text mb-1">{this.props.name}</div>
         <input name={this.props.name} onChange={this.handleChange} type="number" defaultValue={this.state.character[this.props.name]} className='stat-box mb-1 number'></input>
         <div className='border-box mb-1'>{this.props.bonus}</div>
-        <a onClick={this.handleClick}>Edit</a>
       </div>
     );
   }
