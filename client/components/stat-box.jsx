@@ -36,12 +36,6 @@ export default class StatBox extends React.Component {
   }
 
   handleClick(event) {
-    this.setState({ editModeEnabled: !this.state.editModeEnabled });
-  }
-
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
     const info = {
       str: this.state.str,
       dex: this.state.dex,
@@ -59,6 +53,12 @@ export default class StatBox extends React.Component {
       body: JSON.stringify(info)
     };
     fetch(`/api/stats/${info.characterId}`, req);
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+
   }
 
   componentDidMount() {
@@ -85,17 +85,13 @@ export default class StatBox extends React.Component {
 
   }
 
-  // componentDidMount() {
-  //   const test = this.props.stat;
-  //   this.setState({ stat: test });
-  // }
-
   render() {
     return (
       <div className="stat-block">
         <div className="stat-text mb-1">{this.props.name}</div>
         <input name={this.props.name} onChange={this.handleChange} type="number" defaultValue={this.state.character[this.props.name]} className='stat-box mb-1 number'></input>
         <div className='border-box mb-1'>{this.props.bonus}</div>
+        <a onClick={this.handleClick}>Edit</a>
       </div>
     );
   }
