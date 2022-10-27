@@ -119,7 +119,6 @@ app.patch('/api/stats/:characterId', (req, res, next) => {
     "wis" = $4,
     "int" = $5,
     "cha" = $6
-
  where "characterId" = $7
 returning *;
   `;

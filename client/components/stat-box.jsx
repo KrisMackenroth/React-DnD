@@ -31,35 +31,35 @@ export default class StatBox extends React.Component {
       int: '',
       cha: ''
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleChange = this.handleChange.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick(event) {
-    const info = {
-      str: this.state.str,
-      dex: this.state.dex,
-      con: this.state.con,
-      wis: this.state.wis,
-      int: this.state.int,
-      cha: this.state.cha,
-      characterId: this.props.characterId
-    };
-    const req = {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(info)
-    };
-    fetch(`/api/stats/${info.characterId}`, req);
-  }
+  // handleClick(event) {
+  //   const info = {
+  //     str: this.state.str,
+  //     dex: this.state.dex,
+  //     con: this.state.con,
+  //     wis: this.state.wis,
+  //     int: this.state.int,
+  //     cha: this.state.cha,
+  //     characterId: this.props.characterId
+  //   };
+  //   const req = {
+  //     method: 'PATCH',
+  //     headers: {
+  //       'Content-Type': 'application/json'
+  //     },
+  //     body: JSON.stringify(info)
+  //   };
+  //   fetch(`/api/stats/${info.characterId}`, req);
+  // }
 
-  handleChange(event) {
-    const { name, value } = event.target;
-    this.setState({ [name]: value });
+  // handleChange(event) {
+  //   const { name, value } = event.target;
+  //   this.setState({ [name]: value });
 
-  }
+  // }
 
   componentDidMount() {
     fetch(`/api/characters/${this.props.characterId}`)
@@ -89,7 +89,7 @@ export default class StatBox extends React.Component {
     return (
       <div className="stat-block">
         <div className="stat-text mb-1">{this.props.name}</div>
-        <input name={this.props.name} onChange={this.handleChange} type="number" defaultValue={this.state.character[this.props.name]} className='stat-box mb-1 number'></input>
+        <div name={this.props.name} className='stat-box mb-1 number'>{this.state.character[this.props.name]}</div>
         <div className='border-box mb-1'>{this.props.bonus}</div>
       </div>
     );

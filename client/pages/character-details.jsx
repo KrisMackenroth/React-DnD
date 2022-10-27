@@ -3,6 +3,7 @@ import StatCalc from '../components/stat-calc';
 import BonusCalc from '../components/bonus-calc';
 import StatBox from '../components/stat-box';
 import ProfCalc from '../components/prof-bonus';
+import StatEdit from '../components/stat-edit';
 
 export default class CharacterDetails extends React.Component {
   constructor(props) {
@@ -249,7 +250,7 @@ export default class CharacterDetails extends React.Component {
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                Enter New Stats
+                <StatEdit race={this.state.character.race} characterId={this.props.characterId} />
               </div>
               <div>
 
