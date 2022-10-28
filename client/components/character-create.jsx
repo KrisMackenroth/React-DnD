@@ -55,28 +55,34 @@ export default class CharacterCreation extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const info = {
-      name: this.state.name,
-      role: this.state.class,
-      race: this.state.race,
-      background: this.state.background,
-      str: this.state.str,
-      dex: this.state.dex,
-      con: this.state.con,
-      wis: this.state.wis,
-      int: this.state.int,
-      cha: this.state.cha,
-      prof: this.state.profic
-    };
-    const req = {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(info)
-    };
-    fetch('/api/characters', req);
-    window.location.hash = '#';
+
+    fetch(`/api/races/${this.state.race}`)
+      .then(res => res.json())
+      .then(data => {
+        const info = {
+          name: this.state.name,
+          role: this.state.class,
+          race: this.state.race,
+          background: this.state.background,
+          str: parseInt(this.state.str) + parseInt(data[0].str),
+          dex: parseInt(this.state.dex) + parseInt(data[0].dex),
+          con: parseInt(this.state.con) + parseInt(data[0].con),
+          wis: parseInt(this.state.wis) + parseInt(data[0].wis),
+          int: parseInt(this.state.int) + parseInt(data[0].int),
+          cha: parseInt(this.state.cha) + parseInt(data[0].cha),
+          prof: this.state.profic
+        };
+        const req = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(info)
+        };
+        fetch('/api/characters', req);
+        window.location.hash = '#';
+      }
+      );
   }
 
   handleChange(event) {

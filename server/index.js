@@ -105,6 +105,32 @@ returning *;
     .catch(err => next(err));
 });
 
+app.patch('/api/stats/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  const { str, dex, con, wis, int, cha } = req.body;
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must exist');
+  }
+  const sql = `
+    update "characters"
+    set "str" = $1,
+    "dex" = $2,
+    "con" = $3,
+    "wis" = $4,
+    "int" = $5,
+    "cha" = $6
+ where "characterId" = $7
+returning *;
+  `;
+  const params = [str, dex, con, wis, int, cha, characterId];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/classes', (req, res) => {
   const sql = `
     select *
