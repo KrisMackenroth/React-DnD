@@ -1,18 +1,5 @@
 import React from 'react';
 
-// function StatBox(props) {
-//   return (
-//     <div className="stat-block">
-//       <div className="stat-text mb-1">{props.name}</div>
-//       <div className='stat-box mb-1'>{props.stat}</div>
-//       <div className='border-box mb-1'>{props.bonus}</div>
-//     </div>
-
-//   );
-// }
-
-// export default StatBox;
-
 export default class StatBox extends React.Component {
   constructor(props) {
     super(props);
@@ -31,35 +18,7 @@ export default class StatBox extends React.Component {
       int: '',
       cha: ''
     };
-    // this.handleClick = this.handleClick.bind(this);
-    // this.handleChange = this.handleChange.bind(this);
   }
-
-  // handleClick(event) {
-  //   const info = {
-  //     str: this.state.str,
-  //     dex: this.state.dex,
-  //     con: this.state.con,
-  //     wis: this.state.wis,
-  //     int: this.state.int,
-  //     cha: this.state.cha,
-  //     characterId: this.props.characterId
-  //   };
-  //   const req = {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Content-Type': 'application/json'
-  //     },
-  //     body: JSON.stringify(info)
-  //   };
-  //   fetch(`/api/stats/${info.characterId}`, req);
-  // }
-
-  // handleChange(event) {
-  //   const { name, value } = event.target;
-  //   this.setState({ [name]: value });
-
-  // }
 
   componentDidMount() {
     fetch(`/api/characters/${this.props.characterId}`)

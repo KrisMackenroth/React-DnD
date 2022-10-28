@@ -53,7 +53,7 @@ export default class StatEdit extends React.Component {
     );
     return (
 <form>
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='str' onChange={this.handleChange}>
               <option value="" disabled selected hidden>STR</option>
@@ -61,7 +61,7 @@ export default class StatEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='dex' onChange={this.handleChange}>
               <option value="" disabled selected hidden>DEX</option>
@@ -69,7 +69,7 @@ export default class StatEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='con' onChange={this.handleChange}>
               <option value="" disabled selected hidden>CON</option>
@@ -77,7 +77,7 @@ export default class StatEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='int' onChange={this.handleChange}>
               <option value="" disabled selected hidden>INT</option>
@@ -85,7 +85,7 @@ export default class StatEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='wis' onChange={this.handleChange}>
               <option value="" disabled selected hidden>WIS</option>
@@ -93,7 +93,7 @@ export default class StatEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='cha' onChange={this.handleChange}>
               <option value="" disabled selected hidden>CHA</option>
@@ -101,8 +101,14 @@ export default class StatEdit extends React.Component {
             </select>
           </div>
         </div >
-        <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <div className='row'>
+          <div className='col'>
+        <button type="button" className="btn btn-secondary mt-4" data-bs-dismiss="modal">Cancel</button>
+          </div>
+          <div className='col'>
         <button onClick={this.handleSubmit} className="btn btn-primary mt-4" type="submit" data-bs-dismiss="modal">Confirm</button>
+          </div>
+        </div>
 </form>
     );
   }
