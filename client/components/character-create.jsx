@@ -113,7 +113,7 @@ export default class CharacterCreation extends React.Component {
 
     return (
 
-      <form className='row justify-content-center' onSubmit={this.handleSubmit}>
+      <form className='create-width row justify-content-center' onSubmit={this.handleSubmit}>
         <div className='row text-center test align-items-center'>
           <div className='col mt-4'>
         <input

@@ -88,3 +88,8 @@ input {
 input[disabled] {
   border: 0;
 }
+
+.create-width {
+  width: 75%;
+  margin: auto;
+}
