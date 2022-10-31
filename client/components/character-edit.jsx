@@ -75,7 +75,9 @@ export default class CharacterEdit extends React.Component {
     return (
 
       <form onSubmit={this.handleSubmit}>
-        <div className='row text-center test align-items-center'>
+        <div className='row'>
+          <div className='col'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <input
               required
@@ -87,7 +89,7 @@ export default class CharacterEdit extends React.Component {
               className="form-control bg-light" />
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='class' onChange={this.handleChange}>
               <option value="" disabled selected hidden>Class</option>
@@ -95,7 +97,7 @@ export default class CharacterEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='race' onChange={this.handleChange}>
               <option value="" disabled selected hidden>Race</option>
@@ -103,7 +105,7 @@ export default class CharacterEdit extends React.Component {
             </select>
           </div>
         </div >
-        <div className='row text-center test align-items-center'>
+        <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
             <select name='background' onChange={this.handleChange}>
               <option value="" disabled selected hidden>Background</option>
@@ -113,7 +115,9 @@ export default class CharacterEdit extends React.Component {
         </div >
         <div className="modal-footer">
           <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-          <button id={this.props.characterId} onClick={this.handleSubmit} type="button" className="btn background-color-yellow confirm" data-bs-dismiss="modal">Confirm</button>
+              <button id={this.props.characterId} onClick={this.handleSubmit} type="button" className="btn confirm navbar-color" data-bs-dismiss="modal">Confirm</button>
+        </div>
+        </div>
         </div>
       </form>
 

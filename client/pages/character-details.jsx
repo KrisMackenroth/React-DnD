@@ -101,7 +101,7 @@ export default class CharacterDetails extends React.Component {
         <div className='row justify-content-center'>
 
           <div className='col-4'>
-            <a className='btn btn-secondary' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
+            <a className='btn navbar-color' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
             <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox tempName='newStr' characterId={this.props.characterId} name="str" stat={strength} bonus={strengthBonus} /></div>
             </div>

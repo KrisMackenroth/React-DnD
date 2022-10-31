@@ -6,6 +6,10 @@ select:hover {
   cursor: pointer;
 }
 
+.dark-blue {
+  background-color: #274c77 !important;
+}
+
 .navbar-color {
   background-color: #274c77 !important;
   color: white !important;
@@ -91,5 +95,5 @@ input[disabled] {
 
 .create-width {
   width: 75%;
-  margin: auto;
+  margin: auto !important;
 }
