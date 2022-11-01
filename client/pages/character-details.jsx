@@ -140,7 +140,12 @@ export default class CharacterDetails extends React.Component {
             <div className='row'>
               <div className=' col test'><b>Speed:</b> {this.state.speed}</div>
             </div>
-
+            <div className='row'>
+              <div className='mt-4 col test'><b>Inventory</b></div>
+            </div>
+            <div className='row'>
+              <div className='col test'>{this.state.character.inventory}</div>
+            </div>
           </div>
 
           <div className='col-4' onClick={this.handleClick}>

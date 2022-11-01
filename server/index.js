@@ -263,17 +263,17 @@ app.get('/api/spells', (req, res) => {
 });
 
 app.post('/api/characters', (req, res, next) => {
-  const { name, role, race, background, str, dex, con, wis, int, cha, prof } = req.body;
+  const { name, role, race, background, str, dex, con, wis, int, cha, prof, inventory } = req.body;
   Number(str);
   if (!name || !role || !race || !background) {
     throw new ClientError(400, 'All info must be entered properly');
   }
   const sql = `
-    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof")
-    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof", "inventory")
+    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13)
     returning *
   `;
-  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof];
+  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof, inventory];
   db.query(sql, params)
     .then(result => {
       const [info] = result.rows;
