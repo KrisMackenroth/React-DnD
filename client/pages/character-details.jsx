@@ -22,9 +22,12 @@ export default class CharacterDetails extends React.Component {
       speed: '',
       level: '',
       test: [],
-      savingThrows: ''
+      savingThrows: '',
+      inventory: '',
+      inventoryText: ''
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(event) {
@@ -33,6 +36,42 @@ export default class CharacterDetails extends React.Component {
       this.setState({ currentRoll: roll });
     }
 
+    if (event.target.classList.contains('edit-inventory')) {
+      this.setState({ inventory: <div><a className='change-inventory' onClick={this.handleClick}>Confirm</a> <a className='cancel-inventory' onClick={this.handleClick}>Cancel</a><textarea onChange={this.handleChange} name='inventoryText'>{this.state.character.inventory}</textarea></div> });
+    }
+
+    if (event.target.classList.contains('cancel-inventory')) {
+      this.setState({ inventory: this.state.character.inventory });
+    }
+    if (event.target.classList.contains('change-inventory')) {
+      const info = {
+        inventory: this.state.inventoryText
+      };
+      const req = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(info)
+      };
+      fetch(`/api/inventory/${this.props.characterId}`, req)
+        .then(res => res.json())
+        .then(data => {
+          fetch(`/api/characters/${this.props.characterId}`)
+            .then(res => res.json())
+            .then(data => {
+              this.setState({ inventory: data[0].inventory });
+
+            }
+            );
+        }
+        );
+    }
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   componentDidMount() {
@@ -42,6 +81,7 @@ export default class CharacterDetails extends React.Component {
         this.setState({ test: data[0].prof });
         this.setState({ level: data[0].level });
         this.setState({ character: data[0] });
+        this.setState({ inventory: data[0].inventory });
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
@@ -141,10 +181,10 @@ export default class CharacterDetails extends React.Component {
               <div className=' col test'><b>Speed:</b> {this.state.speed}</div>
             </div>
             <div className='row'>
-              <div className='mt-4 col test'><b>Inventory</b></div>
+              <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory' onClick={this.handleClick}>Edit</a></div>
             </div>
             <div className='row'>
-              <div className='col test'>{this.state.character.inventory}</div>
+              <div className='col test'>{this.state.inventory}</div>
             </div>
           </div>
 

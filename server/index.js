@@ -131,6 +131,27 @@ returning *;
     .catch(err => next(err));
 });
 
+app.patch('/api/inventory/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  const { inventory } = req.body;
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must exist');
+  }
+  const sql = `
+    update "characters"
+    set "inventory" = $1
+ where "characterId" = $2
+returning *;
+  `;
+  const params = [inventory, characterId];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/classes', (req, res) => {
   const sql = `
     select *
