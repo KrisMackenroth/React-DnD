@@ -24,7 +24,8 @@ export default class CharacterDetails extends React.Component {
       test: [],
       savingThrows: '',
       inventory: '',
-      inventoryText: ''
+      inventoryText: '',
+      temp: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -37,11 +38,11 @@ export default class CharacterDetails extends React.Component {
     }
 
     if (event.target.classList.contains('edit-inventory')) {
-      this.setState({ inventory: <div><a className='change-inventory' onClick={this.handleClick}>Confirm</a> <a className='cancel-inventory' onClick={this.handleClick}>Cancel</a><textarea onChange={this.handleChange} name='inventoryText'>{this.state.character.inventory}</textarea></div> });
+      this.setState({ temp: <div><a className='change-inventory' onClick={this.handleClick}>Confirm</a> <a className='cancel-inventory' onClick={this.handleClick}>Cancel</a><textarea onChange={this.handleChange} name='inventoryText'>{this.state.inventory}</textarea></div> });
     }
 
     if (event.target.classList.contains('cancel-inventory')) {
-      this.setState({ inventory: this.state.character.inventory });
+      this.setState({ temp: this.state.inventory });
     }
     if (event.target.classList.contains('change-inventory')) {
       const info = {
@@ -61,7 +62,7 @@ export default class CharacterDetails extends React.Component {
             .then(res => res.json())
             .then(data => {
               this.setState({ inventory: data[0].inventory });
-
+              this.setState({ temp: data[0].inventory });
             }
             );
         }
@@ -184,7 +185,7 @@ export default class CharacterDetails extends React.Component {
               <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory' onClick={this.handleClick}>Edit</a></div>
             </div>
             <div className='row'>
-              <div className='col test'>{this.state.inventory}</div>
+              <div className='col test'>{this.state.temp}</div>
             </div>
           </div>
 
