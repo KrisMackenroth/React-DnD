@@ -68,6 +68,10 @@ CREATE TABLE "public"."characters" (
   "level" TEXT NOT NULL,
   "prof" TEXT NOT NULL,
   "inventory" TEXT NOT NULL,
+  "gold" TEXT NOT NULL,
+  "silver" TEXT NOT NULL,
+  "electrum" TEXT NOT NULL,
+  "copper" TEXT NOT NULL,
    primary key ("characterId")
 ) WITH (
   OIDS=FALSE

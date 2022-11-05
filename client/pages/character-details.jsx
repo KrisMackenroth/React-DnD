@@ -83,6 +83,7 @@ export default class CharacterDetails extends React.Component {
         this.setState({ level: data[0].level });
         this.setState({ character: data[0] });
         this.setState({ inventory: data[0].inventory });
+        this.setState({ temp: data[0].inventory });
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
@@ -183,6 +184,12 @@ export default class CharacterDetails extends React.Component {
             </div>
             <div className='row'>
               <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory' onClick={this.handleClick}>Edit</a></div>
+            </div>
+            <div className='row'>
+              <div className='col test'>Gold: </div>
+              <div className='col test'>Silver: </div>
+              <div className='col test'>Electrum: </div>
+              <div className='col test'>Copper: </div>
             </div>
             <div className='row'>
               <div className='col test'>{this.state.temp}</div>
