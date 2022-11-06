@@ -133,17 +133,21 @@ returning *;
 
 app.patch('/api/inventory/:characterId', (req, res, next) => {
   const characterId = Number(req.params.characterId);
-  const { inventory } = req.body;
+  const { inventory, gold, silver, electrum, copper } = req.body;
   if (!characterId) {
     throw new ClientError(400, 'characterId must exist');
   }
   const sql = `
     update "characters"
-    set "inventory" = $1
- where "characterId" = $2
+    set "inventory" = $1,
+    "gold" = $2,
+    "silver" = $3,
+    "electrum" = $4,
+    "copper" = $5
+ where "characterId" = $6
 returning *;
   `;
-  const params = [inventory, characterId];
+  const params = [inventory, gold, silver, electrum, copper, characterId];
   db.query(sql, params)
     .then(result => {
       const [info] = result.rows;

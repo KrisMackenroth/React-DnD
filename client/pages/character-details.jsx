@@ -25,7 +25,19 @@ export default class CharacterDetails extends React.Component {
       savingThrows: '',
       inventory: '',
       inventoryText: '',
-      temp: ''
+      temp: '',
+      tempGold: '',
+      tempSilver: '',
+      tempElectrum: '',
+      tempCopper: '',
+      gold: '',
+      silver: '',
+      electrum: '',
+      copper: '',
+      silverText: '',
+      electrumText: '',
+      copperTExt: '',
+      goldText: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -38,15 +50,27 @@ export default class CharacterDetails extends React.Component {
     }
 
     if (event.target.classList.contains('edit-inventory')) {
+      this.setState({ tempSilver: <div><textarea onChange={this.handleChange} name='silverText'>{this.state.silver}</textarea></div> });
+      this.setState({ tempElectrum: <div><textarea onChange={this.handleChange} name='electrumText'>{this.state.electrum}</textarea></div> });
+      this.setState({ tempCopper: <div><textarea onChange={this.handleChange} name='copperText'>{this.state.copper}</textarea></div> });
+      this.setState({ tempGold: <div><textarea onChange={this.handleChange} name='goldText'>{this.state.gold}</textarea></div> });
       this.setState({ temp: <div><a className='change-inventory' onClick={this.handleClick}>Confirm</a> <a className='cancel-inventory' onClick={this.handleClick}>Cancel</a><textarea onChange={this.handleChange} name='inventoryText'>{this.state.inventory}</textarea></div> });
     }
 
     if (event.target.classList.contains('cancel-inventory')) {
       this.setState({ temp: this.state.inventory });
+      this.setState({ tempSilver: this.state.silver });
+      this.setState({ tempElectrum: this.state.electrum });
+      this.setState({ tempCopper: this.state.copper });
+      this.setState({ tempGold: this.state.gold });
     }
     if (event.target.classList.contains('change-inventory')) {
       const info = {
-        inventory: this.state.inventoryText
+        inventory: this.state.inventoryText,
+        gold: this.state.goldText,
+        silver: this.state.silverText,
+        electrum: this.state.electrumText,
+        copper: this.state.copperText
       };
       const req = {
         method: 'PATCH',
@@ -63,6 +87,14 @@ export default class CharacterDetails extends React.Component {
             .then(data => {
               this.setState({ inventory: data[0].inventory });
               this.setState({ temp: data[0].inventory });
+              this.setState({ gold: data[0].gold });
+              this.setState({ silver: data[0].silver });
+              this.setState({ electrum: data[0].electrum });
+              this.setState({ copper: data[0].copper });
+              this.setState({ tempGold: data[0].gold });
+              this.setState({ tempSilver: data[0].silver });
+              this.setState({ tempElectrum: data[0].electrum });
+              this.setState({ tempCopper: data[0].copper });
             }
             );
         }
@@ -84,6 +116,14 @@ export default class CharacterDetails extends React.Component {
         this.setState({ character: data[0] });
         this.setState({ inventory: data[0].inventory });
         this.setState({ temp: data[0].inventory });
+        this.setState({ tempGold: data[0].gold });
+        this.setState({ tempSilver: data[0].silver });
+        this.setState({ tempCopper: data[0].copper });
+        this.setState({ tempElectrum: data[0].electrum });
+        this.setState({ gold: data[0].gold });
+        this.setState({ silver: data[0].silver });
+        this.setState({ copper: data[0].copper });
+        this.setState({ electrum: data[0].electrum });
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
@@ -186,10 +226,10 @@ export default class CharacterDetails extends React.Component {
               <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory' onClick={this.handleClick}>Edit</a></div>
             </div>
             <div className='row'>
-              <div className='col test'>Gold: </div>
-              <div className='col test'>Silver: </div>
-              <div className='col test'>Electrum: </div>
-              <div className='col test'>Copper: </div>
+              <div className='col test'>Gold:{this.state.tempGold} </div>
+              <div className='col test'>Silver: {this.state.tempSilver}</div>
+              <div className='col test'>Electrum: {this.state.tempElectrum}</div>
+              <div className='col test'>Copper: {this.state.tempCopper}</div>
             </div>
             <div className='row'>
               <div className='col test'>{this.state.temp}</div>
