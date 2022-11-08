@@ -4,6 +4,7 @@ import BonusCalc from '../components/bonus-calc';
 import StatBox from '../components/stat-box';
 import ProfCalc from '../components/prof-bonus';
 import StatEdit from '../components/stat-edit';
+import WeaponCreate from '../components/weapon-create';
 
 export default class CharacterDetails extends React.Component {
   constructor(props) {
@@ -37,13 +38,18 @@ export default class CharacterDetails extends React.Component {
       silverText: '',
       electrumText: '',
       copperTExt: '',
-      goldText: ''
+      goldText: '',
+      weaponName: '',
+      weaponDam: '',
+      weaponStat: '',
+      weaponRow: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(event) {
+
     if (event.target.classList.contains('roll')) {
       const roll = RollCalc(event.target.id);
       this.setState({ currentRoll: roll });
@@ -234,6 +240,16 @@ export default class CharacterDetails extends React.Component {
             <div className='row'>
               <div className='col test'>{this.state.temp}</div>
             </div>
+            <div className='row'>
+              <div className='col test mt-4'>Weapons <a className='btn navbar-color' data-bs-toggle="modal" data-bs-target="#weaponModal">Edit</a></div>
+            </div>
+            <div className='row'>
+                <div className='col test'>Name</div>
+                <div className='col test'>Damage</div>
+                <div className='col test'>Stat</div>
+                <div className='col test'>Roll</div>
+            </div>
+
           </div>
 
           <div className='col-4' onClick={this.handleClick}>
@@ -344,6 +360,22 @@ export default class CharacterDetails extends React.Component {
               </div>
               <div className="modal-body">
                 <StatEdit race={this.state.character.race} characterId={this.props.characterId} />
+              </div>
+              <div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="modal fade" id="weaponModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="staticBackdropLabel">Enter New Weapon</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                <WeaponCreate />
               </div>
               <div>
 

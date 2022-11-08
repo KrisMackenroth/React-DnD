@@ -156,6 +156,23 @@ returning *;
     .catch(err => next(err));
 });
 
+app.post('/api/weapons', (req, res, next) => {
+  const { name, stat, damage } = req.body;
+
+  const sql = `
+    insert into "weapons" ("name", "stat", "damage")
+    values ($1, $2, $3)
+    returning *
+  `;
+  const params = [name, stat, damage];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/classes', (req, res) => {
   const sql = `
     select *

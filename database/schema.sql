@@ -76,3 +76,11 @@ CREATE TABLE "public"."characters" (
 ) WITH (
   OIDS=FALSE
 );
+
+CREATE TABLE "public"."weapons" (
+	"name" TEXT NOT NULL,
+	"stat" TEXT NOT NULL,
+	"damage" TEXT NOT NULL
+) WITH (
+  OIDS=FALSE
+);
