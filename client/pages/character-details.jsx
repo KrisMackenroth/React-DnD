@@ -54,7 +54,7 @@ export default class CharacterDetails extends React.Component {
       this.setState({ tempElectrum: <div><textarea onChange={this.handleChange} name='electrumText'>{this.state.electrum}</textarea></div> });
       this.setState({ tempCopper: <div><textarea onChange={this.handleChange} name='copperText'>{this.state.copper}</textarea></div> });
       this.setState({ tempGold: <div><textarea onChange={this.handleChange} name='goldText'>{this.state.gold}</textarea></div> });
-      this.setState({ temp: <div><a className='change-inventory' onClick={this.handleClick}>Confirm</a> <a className='cancel-inventory' onClick={this.handleClick}>Cancel</a><textarea onChange={this.handleChange} name='inventoryText'>{this.state.inventory}</textarea></div> });
+      this.setState({ temp: <div><textarea onChange={this.handleChange} name='inventoryText'>{this.state.inventory}</textarea><div className='row'><div className='col'><a className='change-inventory btn navbar-color' onClick={this.handleClick}>Confirm</a></div> <div className='col'><a className='cancel-inventory btn navbar-color' onClick={this.handleClick}>Cancel</a></div></div></div> });
     }
 
     if (event.target.classList.contains('cancel-inventory')) {
@@ -223,7 +223,7 @@ export default class CharacterDetails extends React.Component {
               <div className=' col test'><b>Speed:</b> {this.state.speed}</div>
             </div>
             <div className='row'>
-              <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory' onClick={this.handleClick}>Edit</a></div>
+              <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory btn navbar-color' onClick={this.handleClick}>Edit</a></div>
             </div>
             <div className='row'>
               <div className='col test'>Gold:{this.state.tempGold} </div>
