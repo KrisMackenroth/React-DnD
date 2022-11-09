@@ -4,7 +4,7 @@ import BonusCalc from '../components/bonus-calc';
 import StatBox from '../components/stat-box';
 import ProfCalc from '../components/prof-bonus';
 import StatEdit from '../components/stat-edit';
-import WeaponCreate from '../components/weapon-create';
+// import WeaponCreate from '../components/weapon-create';
 
 export default class CharacterDetails extends React.Component {
   constructor(props) {
@@ -371,11 +371,11 @@ export default class CharacterDetails extends React.Component {
           <div className="modal-dialog">
             <div className="modal-content">
               <div className="modal-header">
-                <h5 className="modal-title" id="staticBackdropLabel">Enter New Weapon</h5>
+                <h5 className="modal-title" id="staticBackdropLabel">Select Weapon</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div className="modal-body">
-                <WeaponCreate />
+                {/* <WeaponCreate /> */}
               </div>
               <div>
 

@@ -20,7 +20,7 @@ export default class WeaponCreate extends React.Component {
     };
 
     const req = {
-      method: 'PATCH',
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
@@ -41,12 +41,12 @@ export default class WeaponCreate extends React.Component {
         <div className='m-auto row text-center test align-items-center'>
           <div className='col'>
             <label>Weapon Name:</label>
-            <textarea onChange={this.handleChange} name='WeaponName'></textarea>
+            <textarea onChange={this.handleChange} name='weaponName'></textarea>
           </div>
         </div >
         <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
-            <select name='weaponDam'>
+            <select name='weaponDam' onChange={this.handleChange}>
               <option value="0">Select Damage:</option>
               <option value="1d4">1d4</option>
               <option value="1d6">1d6</option>
@@ -59,7 +59,7 @@ export default class WeaponCreate extends React.Component {
         </div >
         <div className='m-auto row text-center test align-items-center'>
           <div className='col mt-4'>
-            <select name='weaponStat'>
+            <select name='weaponStat' onChange={this.handleChange}>
               <option value="0">Select Stat:</option>
               <option value="str">Str</option>
               <option value="dex">Dex</option>
@@ -70,6 +70,7 @@ export default class WeaponCreate extends React.Component {
             </select>
           </div>
         </div >
+        <button onClick={this.handleSubmit} className="btn btn-primary mt-4" type="submit" data-bs-dismiss="modal">Confirm</button>
       </form>
     );
   }

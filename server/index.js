@@ -304,6 +304,23 @@ app.get('/api/spells', (req, res) => {
     });
 });
 
+app.get('/api/weapons', (req, res) => {
+  const sql = `
+    select *
+      from "weapons"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.post('/api/characters', (req, res, next) => {
   const { name, role, race, background, str, dex, con, wis, int, cha, prof, inventory } = req.body;
   Number(str);
