@@ -4,6 +4,7 @@ import BonusCalc from '../components/bonus-calc';
 import StatBox from '../components/stat-box';
 import ProfCalc from '../components/prof-bonus';
 import StatEdit from '../components/stat-edit';
+// import WeaponCreate from '../components/weapon-create';
 
 export default class CharacterDetails extends React.Component {
   constructor(props) {
@@ -22,17 +23,94 @@ export default class CharacterDetails extends React.Component {
       speed: '',
       level: '',
       test: [],
-      savingThrows: ''
+      savingThrows: '',
+      inventory: '',
+      inventoryText: '',
+      temp: '',
+      tempGold: '',
+      tempSilver: '',
+      tempElectrum: '',
+      tempCopper: '',
+      gold: '',
+      silver: '',
+      electrum: '',
+      copper: '',
+      silverText: '',
+      electrumText: '',
+      copperTExt: '',
+      goldText: '',
+      weaponName: '',
+      weaponDam: '',
+      weaponStat: '',
+      weaponRow: ''
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleClick(event) {
+
     if (event.target.classList.contains('roll')) {
       const roll = RollCalc(event.target.id);
       this.setState({ currentRoll: roll });
     }
 
+    if (event.target.classList.contains('edit-inventory')) {
+      this.setState({ tempSilver: <div><textarea onChange={this.handleChange} name='silverText'>{this.state.silver}</textarea></div> });
+      this.setState({ tempElectrum: <div><textarea onChange={this.handleChange} name='electrumText'>{this.state.electrum}</textarea></div> });
+      this.setState({ tempCopper: <div><textarea onChange={this.handleChange} name='copperText'>{this.state.copper}</textarea></div> });
+      this.setState({ tempGold: <div><textarea onChange={this.handleChange} name='goldText'>{this.state.gold}</textarea></div> });
+      this.setState({ temp: <div><textarea onChange={this.handleChange} name='inventoryText'>{this.state.inventory}</textarea><div className='row'><div className='col'><a className='change-inventory btn navbar-color' onClick={this.handleClick}>Confirm</a></div> <div className='col'><a className='cancel-inventory btn navbar-color' onClick={this.handleClick}>Cancel</a></div></div></div> });
+    }
+
+    if (event.target.classList.contains('cancel-inventory')) {
+      this.setState({ temp: this.state.inventory });
+      this.setState({ tempSilver: this.state.silver });
+      this.setState({ tempElectrum: this.state.electrum });
+      this.setState({ tempCopper: this.state.copper });
+      this.setState({ tempGold: this.state.gold });
+    }
+    if (event.target.classList.contains('change-inventory')) {
+      const info = {
+        inventory: this.state.inventoryText,
+        gold: this.state.goldText,
+        silver: this.state.silverText,
+        electrum: this.state.electrumText,
+        copper: this.state.copperText
+      };
+      const req = {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(info)
+      };
+      fetch(`/api/inventory/${this.props.characterId}`, req)
+        .then(res => res.json())
+        .then(data => {
+          fetch(`/api/characters/${this.props.characterId}`)
+            .then(res => res.json())
+            .then(data => {
+              this.setState({ inventory: data[0].inventory });
+              this.setState({ temp: data[0].inventory });
+              this.setState({ gold: data[0].gold });
+              this.setState({ silver: data[0].silver });
+              this.setState({ electrum: data[0].electrum });
+              this.setState({ copper: data[0].copper });
+              this.setState({ tempGold: data[0].gold });
+              this.setState({ tempSilver: data[0].silver });
+              this.setState({ tempElectrum: data[0].electrum });
+              this.setState({ tempCopper: data[0].copper });
+            }
+            );
+        }
+        );
+    }
+  }
+
+  handleChange(event) {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
   }
 
   componentDidMount() {
@@ -42,6 +120,16 @@ export default class CharacterDetails extends React.Component {
         this.setState({ test: data[0].prof });
         this.setState({ level: data[0].level });
         this.setState({ character: data[0] });
+        this.setState({ inventory: data[0].inventory });
+        this.setState({ temp: data[0].inventory });
+        this.setState({ tempGold: data[0].gold });
+        this.setState({ tempSilver: data[0].silver });
+        this.setState({ tempCopper: data[0].copper });
+        this.setState({ tempElectrum: data[0].electrum });
+        this.setState({ gold: data[0].gold });
+        this.setState({ silver: data[0].silver });
+        this.setState({ copper: data[0].copper });
+        this.setState({ electrum: data[0].electrum });
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
@@ -101,7 +189,7 @@ export default class CharacterDetails extends React.Component {
         <div className='row justify-content-center'>
 
           <div className='col-4'>
-            <a className='btn btn-secondary' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
+            <a className='btn navbar-color' data-bs-toggle="modal" data-bs-target="#staticBackdrop">Edit</a>
             <div className='row'>
               <div className='col d-flex justify-content-center'><StatBox tempName='newStr' characterId={this.props.characterId} name="str" stat={strength} bonus={strengthBonus} /></div>
             </div>
@@ -139,6 +227,27 @@ export default class CharacterDetails extends React.Component {
             </div>
             <div className='row'>
               <div className=' col test'><b>Speed:</b> {this.state.speed}</div>
+            </div>
+            <div className='row'>
+              <div className='mt-4 col test'><b>Inventory</b> <a className='edit-inventory btn navbar-color' onClick={this.handleClick}>Edit</a></div>
+            </div>
+            <div className='row'>
+              <div className='col test'>Gold:{this.state.tempGold} </div>
+              <div className='col test'>Silver: {this.state.tempSilver}</div>
+              <div className='col test'>Electrum: {this.state.tempElectrum}</div>
+              <div className='col test'>Copper: {this.state.tempCopper}</div>
+            </div>
+            <div className='row'>
+              <div className='col test'>{this.state.temp}</div>
+            </div>
+            <div className='row'>
+              <div className='col test mt-4'>Weapons <a className='btn navbar-color' data-bs-toggle="modal" data-bs-target="#weaponModal">Edit</a></div>
+            </div>
+            <div className='row'>
+                <div className='col test'>Name</div>
+                <div className='col test'>Damage</div>
+                <div className='col test'>Stat</div>
+                <div className='col test'>Roll</div>
             </div>
 
           </div>
@@ -251,6 +360,22 @@ export default class CharacterDetails extends React.Component {
               </div>
               <div className="modal-body">
                 <StatEdit race={this.state.character.race} characterId={this.props.characterId} />
+              </div>
+              <div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="modal fade" id="weaponModal" data-bs-backdrop="static" data-bs-keyboard="false" tabIndex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+          <div className="modal-dialog">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="staticBackdropLabel">Select Weapon</h5>
+                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div className="modal-body">
+                {/* <WeaponCreate /> */}
               </div>
               <div>
 

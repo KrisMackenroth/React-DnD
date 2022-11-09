@@ -21,6 +21,9 @@ export default class NavBar extends React.Component {
               <li className="nav-item">
                 <a className="nav-link navbar-color" href="#spell-page">Spells</a>
               </li>
+              <li className="nav-item">
+                <a className="nav-link navbar-color" href="#weapons-page">Weapons</a>
+              </li>
             </ul>
           </div>
         </div>

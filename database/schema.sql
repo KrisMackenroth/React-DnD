@@ -67,7 +67,20 @@ CREATE TABLE "public"."characters" (
   "cha" TEXT not NULL,
   "level" TEXT NOT NULL,
   "prof" TEXT NOT NULL,
+  "inventory" TEXT NOT NULL,
+  "gold" TEXT NOT NULL,
+  "silver" TEXT NOT NULL,
+  "electrum" TEXT NOT NULL,
+  "copper" TEXT NOT NULL,
    primary key ("characterId")
+) WITH (
+  OIDS=FALSE
+);
+
+CREATE TABLE "public"."weapons" (
+	"name" TEXT NOT NULL,
+	"stat" TEXT NOT NULL,
+	"damage" TEXT NOT NULL
 ) WITH (
   OIDS=FALSE
 );

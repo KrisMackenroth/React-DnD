@@ -131,6 +131,48 @@ returning *;
     .catch(err => next(err));
 });
 
+app.patch('/api/inventory/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  const { inventory, gold, silver, electrum, copper } = req.body;
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must exist');
+  }
+  const sql = `
+    update "characters"
+    set "inventory" = $1,
+    "gold" = $2,
+    "silver" = $3,
+    "electrum" = $4,
+    "copper" = $5
+ where "characterId" = $6
+returning *;
+  `;
+  const params = [inventory, gold, silver, electrum, copper, characterId];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
+});
+
+app.post('/api/weapons', (req, res, next) => {
+  const { name, stat, damage } = req.body;
+
+  const sql = `
+    insert into "weapons" ("name", "stat", "damage")
+    values ($1, $2, $3)
+    returning *
+  `;
+  const params = [name, stat, damage];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
+});
+
 app.get('/api/classes', (req, res) => {
   const sql = `
     select *
@@ -262,18 +304,35 @@ app.get('/api/spells', (req, res) => {
     });
 });
 
+app.get('/api/weapons', (req, res) => {
+  const sql = `
+    select *
+      from "weapons"
+  `;
+  db.query(sql)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.post('/api/characters', (req, res, next) => {
-  const { name, role, race, background, str, dex, con, wis, int, cha, prof } = req.body;
+  const { name, role, race, background, str, dex, con, wis, int, cha, prof, inventory } = req.body;
   Number(str);
   if (!name || !role || !race || !background) {
     throw new ClientError(400, 'All info must be entered properly');
   }
   const sql = `
-    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof")
-    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
+    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof", "inventory", "gold", "silver", "electrum", "copper")
+    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
     returning *
   `;
-  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof];
+  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof, inventory, 0, 0, 0, 0];
   db.query(sql, params)
     .then(result => {
       const [info] = result.rows;

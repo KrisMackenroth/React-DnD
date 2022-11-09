@@ -20,7 +20,8 @@ export default class CharacterCreation extends React.Component {
       cha: 0,
       prof: [],
       profic: '',
-      addon: ''
+      addon: '',
+      inventory: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -70,7 +71,8 @@ export default class CharacterCreation extends React.Component {
           wis: parseInt(this.state.wis) + parseInt(data[0].wis),
           int: parseInt(this.state.int) + parseInt(data[0].int),
           cha: parseInt(this.state.cha) + parseInt(data[0].cha),
-          prof: this.state.profic
+          prof: this.state.profic,
+          inventory: this.state.inventory
         };
         const req = {
           method: 'POST',
@@ -164,6 +166,18 @@ export default class CharacterCreation extends React.Component {
               <option value="" disabled selected hidden>Background</option>
               {listBackgrounds}
               </select>
+          </div>
+        </div >
+        <div className='row text-center test align-items-center'>
+          <div className='col mt-4'>
+            <input
+              required
+              autoFocus
+              type="text"
+              name="inventory"
+              onChange={this.handleChange}
+              placeholder="Inventory"
+              className="form-control bg-light" />
           </div>
         </div >
         <div className='row text-center test align-items-center'>
