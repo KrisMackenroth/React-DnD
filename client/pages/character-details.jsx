@@ -42,10 +42,28 @@ export default class CharacterDetails extends React.Component {
       weaponName: '',
       weaponDam: '',
       weaponStat: '',
-      weaponRow: ''
+      weaponRow: '',
+      weapons: [],
+      chosenWeapon: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const info = {
+      weapons: this.state.chosenWeapon
+    };
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(info)
+    };
+    fetch(`/api/weapons/${this.props.characterId}`, req);
   }
 
   handleClick(event) {
@@ -160,9 +178,19 @@ export default class CharacterDetails extends React.Component {
       }
       );
 
+    fetch('/api/weapons')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ weapons: data });
+      }
+      );
+
   }
 
   render() {
+    const listWep = this.state.weapons.map(wep =>
+      <option key={wep.name} value={wep.name}>{wep.name}</option>
+    );
     const savingThrows = this.state.savingThrows;
     const example = this.state.test + ' ' + savingThrows;
     const temp = example.toString().split(' ');
@@ -374,12 +402,15 @@ export default class CharacterDetails extends React.Component {
                 <h5 className="modal-title" id="staticBackdropLabel">Select Weapon</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+              <form onSubmit={this.handleSubmit}>
               <div className="modal-body">
-                {/* <WeaponCreate /> */}
+                <select name='chosenWeapon' onChange={this.handleChange}>
+                  <option value="" disabled selected hidden>Weapons</option>
+                  {listWep}
+                </select>
               </div>
-              <div>
-
-              </div>
+                <button className="btn btn-primary mt-4" type="submit">Add</button>
+              </form>
             </div>
           </div>
         </div>

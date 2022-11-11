@@ -72,15 +72,18 @@ CREATE TABLE "public"."characters" (
   "silver" TEXT NOT NULL,
   "electrum" TEXT NOT NULL,
   "copper" TEXT NOT NULL,
+  "weapons" TEXT NOT NULL,
    primary key ("characterId")
 ) WITH (
   OIDS=FALSE
 );
 
 CREATE TABLE "public"."weapons" (
+  "weaponId" serial,
 	"name" TEXT NOT NULL,
 	"stat" TEXT NOT NULL,
-	"damage" TEXT NOT NULL
+	"damage" TEXT NOT NULL,
+  primary key ("weaponId")
 ) WITH (
   OIDS=FALSE
 );

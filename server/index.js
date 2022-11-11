@@ -156,6 +156,27 @@ returning *;
     .catch(err => next(err));
 });
 
+app.patch('/api/weapons/:characterId', (req, res, next) => {
+  const characterId = Number(req.params.characterId);
+  const { weapons } = req.body;
+  if (!characterId) {
+    throw new ClientError(400, 'characterId must exist');
+  }
+  const sql = `
+    update "characters"
+    set "weapons" = $1
+ where "characterId" = $2
+returning *;
+  `;
+  const params = [weapons, characterId];
+  db.query(sql, params)
+    .then(result => {
+      const [info] = result.rows;
+      res.status(201).json(info);
+    })
+    .catch(err => next(err));
+});
+
 app.post('/api/weapons', (req, res, next) => {
   const { name, stat, damage } = req.body;
 
@@ -328,11 +349,11 @@ app.post('/api/characters', (req, res, next) => {
     throw new ClientError(400, 'All info must be entered properly');
   }
   const sql = `
-    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof", "inventory", "gold", "silver", "electrum", "copper")
-    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17)
+    insert into "characters" ("name", "class", "race", "background", "str", "dex", "con", "wis", "int", "cha", "level", "prof", "inventory", "gold", "silver", "electrum", "copper", "weapons")
+    values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17, $18)
     returning *
   `;
-  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof, inventory, 0, 0, 0, 0];
+  const params = [name, role, race, background, str, dex, con, wis, int, cha, 1, prof, inventory, 0, 0, 0, 0, ''];
   db.query(sql, params)
     .then(result => {
       const [info] = result.rows;
