@@ -42,10 +42,28 @@ export default class CharacterDetails extends React.Component {
       weaponName: '',
       weaponDam: '',
       weaponStat: '',
-      weaponRow: ''
+      weaponRow: '',
+      weapons: [],
+      chosenWeapon: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    const info = {
+      weapons: this.state.chosenWeapon
+    };
+    const req = {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(info)
+    };
+    fetch(`/api/weapons/${this.props.characterId}`, req);
   }
 
   handleClick(event) {
@@ -130,6 +148,14 @@ export default class CharacterDetails extends React.Component {
         this.setState({ silver: data[0].silver });
         this.setState({ copper: data[0].copper });
         this.setState({ electrum: data[0].electrum });
+        fetch(`/api/weapons/${data[0].weapons}`)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ weaponName: data[0].name });
+            this.setState({ weaponStat: data[0].stat });
+            this.setState({ weaponDam: data[0].damage });
+          }
+          );
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
@@ -160,9 +186,19 @@ export default class CharacterDetails extends React.Component {
       }
       );
 
+    fetch('/api/weapons')
+      .then(res => res.json())
+      .then(data => {
+        this.setState({ weapons: data });
+      }
+      );
+
   }
 
   render() {
+    const listWep = this.state.weapons.map(wep =>
+      <option key={wep.name} value={wep.name}>{wep.name}</option>
+    );
     const savingThrows = this.state.savingThrows;
     const example = this.state.test + ' ' + savingThrows;
     const temp = example.toString().split(' ');
@@ -249,7 +285,11 @@ export default class CharacterDetails extends React.Component {
                 <div className='col test'>Stat</div>
                 <div className='col test'>Roll</div>
             </div>
-
+            <div className='row'>
+              <div className='col test'>{this.state.weaponName}</div>
+              <div className='col test'>{this.state.weaponDam}</div>
+              <div className='col test'>{this.state.weaponStat}</div>
+            </div>
           </div>
 
           <div className='col-4' onClick={this.handleClick}>
@@ -374,12 +414,15 @@ export default class CharacterDetails extends React.Component {
                 <h5 className="modal-title" id="staticBackdropLabel">Select Weapon</h5>
                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
+              <form onSubmit={this.handleSubmit}>
               <div className="modal-body">
-                {/* <WeaponCreate /> */}
+                <select name='chosenWeapon' onChange={this.handleChange}>
+                  <option value="" disabled selected hidden>Weapons</option>
+                  {listWep}
+                </select>
               </div>
-              <div>
-
-              </div>
+                <button className="btn btn-primary mt-4" type="submit">Add</button>
+              </form>
             </div>
           </div>
         </div>
