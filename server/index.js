@@ -308,6 +308,29 @@ app.get('/api/classes/:class', (req, res) => {
     });
 });
 
+app.get('/api/weapons/:weapon', (req, res) => {
+  const weapon = req.params.weapon;
+  if (!weapon) {
+    throw new ClientError(400, 'weapon must exist');
+  }
+  const sql = `
+    select *
+      from "weapons"
+      where "name" = $1
+  `;
+  const params = [weapon];
+  db.query(sql, params)
+    .then(result => {
+      res.json(result.rows);
+    })
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({
+        error: 'an unexpected error occurred'
+      });
+    });
+});
+
 app.get('/api/spells', (req, res) => {
   const sql = `
     select *

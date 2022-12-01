@@ -148,6 +148,14 @@ export default class CharacterDetails extends React.Component {
         this.setState({ silver: data[0].silver });
         this.setState({ copper: data[0].copper });
         this.setState({ electrum: data[0].electrum });
+        fetch(`/api/weapons/${data[0].weapons}`)
+          .then(res => res.json())
+          .then(data => {
+            this.setState({ weaponName: data[0].name });
+            this.setState({ weaponStat: data[0].stat });
+            this.setState({ weaponDam: data[0].damage });
+          }
+          );
         fetch(`/api/races/${data[0].race}`)
           .then(res => res.json())
           .then(data => {
@@ -277,7 +285,11 @@ export default class CharacterDetails extends React.Component {
                 <div className='col test'>Stat</div>
                 <div className='col test'>Roll</div>
             </div>
-
+            <div className='row'>
+              <div className='col test'>{this.state.weaponName}</div>
+              <div className='col test'>{this.state.weaponDam}</div>
+              <div className='col test'>{this.state.weaponStat}</div>
+            </div>
           </div>
 
           <div className='col-4' onClick={this.handleClick}>
